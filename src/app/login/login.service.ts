@@ -17,9 +17,9 @@ export class LoginService {
     logar(usuario: Usuario){
         let body = {
             email: usuario.email,
-            passoword: usuario.password
+            password: usuario.password
         };
-
+        console.log(body);
         return this.httpClient.post(environment.url_api + 'login', body);
     }
 

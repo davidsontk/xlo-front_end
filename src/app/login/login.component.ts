@@ -1,5 +1,9 @@
-import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { LoginService } from './login.service';
+import { Usuario } from '../shared/models/usuario';
 
 @Component({
     selector: 'login-app',
@@ -8,18 +12,36 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LoginComponent implements OnInit {
-    constructor(private loginService: LoginService) { }
+    formLogin: FormGroup;
+    load: boolean = false;
 
-    ngOnInit() { }
+    constructor(private loginService: LoginService, 
+        private fb: FormBuilder, 
+        private router: Router) { }
+
+    ngOnInit() {
+        this.formLogin = this.fb.group({
+            email: ['', Validators.email],
+            senha: ['', Validators.required]
+        });
+    }
 
 
-    entrarComCredenciais(usuario: any) {
+    entrar() {
+        this.load = true;
+        let usuario: Usuario = new Usuario();
+        usuario.email = this.formLogin.get('email').value;
+        usuario.password = this.formLogin.get('senha').value;
         this.loginService.logar(usuario).subscribe(
-            (data) => {
+            (data: any) => {
                 console.log('DADO QUE CHEGOU ', data);
+                sessionStorage.setItem('user',JSON.stringify(data.usuario));
+                console.log('passei por aqui');
+                this.router.navigateByUrl('tela');
             },
             (error) => {
-                console.log('DEU erro = ',  error);
+                console.log('Erro ao tentar logar = ', error);
+
             }
         );
     }

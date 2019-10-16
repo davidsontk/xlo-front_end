@@ -1,5 +1,68 @@
-<div > 
-tela de login
-<button class="teste"> oi  </button>
+<div class="sign-in-2">
+    <div class="container-fluid no-pdd-horizon bg">
+        <div class="row">
+            <div class="col-md-10 mr-auto ml-auto">
+                <div class="row">
+                    <div class="mr-auto ml-auto">
+                        <div class="vertical-align full-height">
+                            <div class="table-cell">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="pdd-horizon-30 pdd-vertical-30">
+                                            <div class="mrg-btm-30">
+                                                <!-- <img class="img-responsive inline-block"
+                                                        src="assets/images/logo/logo.png" alt="xlo"> -->
+                                            </div>
+                                            <p class="mrg-btm-15 font-size-13">Por favor, digite suas credenciais
+                                                para entrar.</p>
 
+                                            <form class="ng-pristine ng-valid" [formGroup]="formLogin"
+                                                (ngSubmit)="entrar()" novalidate>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>E-mail</label>
+                                                            <input type="email" class="form-control" name="email"
+                                                                placeholder="E-mail" formControlName="email">
+                                                            <label class="error"
+                                                                *ngIf="formLogin.get('email').hasError('email') && formLogin.get('email').touched">Insira
+                                                                um e-mail válido.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="width-95">Senha</label>
+                                                            <input type="password" class="form-control"
+                                                                formControlName="senha" placeholder="Senha">
+                                                            <label class="error"
+                                                                *ngIf="formLogin.get('senha').hasError('required') && formLogin.get('senha').touched">Senha
+                                                                é obrigatório.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mrg-top-10 text-right">
+                                                    <button class="btn btn-primary btn-block"
+                                                        [disabled]="formLogin.invalid || load"
+                                                        type="submit">Entrar</button>
+                                                </div>
+                                                <div *ngIf="load" class="load-center">
+                                                    <div class="lds-facebook">
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
