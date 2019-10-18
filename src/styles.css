@@ -1,2 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr';
+
+ul {
+    align-content: center;
+    padding-right: 30%;
+    padding-left: 30%;
+    list-style-type: none;
+}
