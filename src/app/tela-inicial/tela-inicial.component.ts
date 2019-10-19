@@ -8,5 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class TelaInicialComponent implements OnInit {
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.listaImagens = [
+            {
+                nome: "Fusca",
+                path: "../assets/Img/fuscao.jpg"
+            },
+            {
+                nome: "Brasília",
+                path: "../assets/Img/brasiliaAmarela.jpg"
+            }
+        ];
+    }
+
+    listaImagens;
 }
