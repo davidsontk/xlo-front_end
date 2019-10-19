@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalLoginComponent } from '../login/modal-login/modal-login.component'
 
 @Component({
     selector: 'menu-app',

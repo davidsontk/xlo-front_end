@@ -8,6 +8,7 @@ import { LoginService } from './login.service';
 import { LoginComponent } from './login.component';
 import { loginRoutes } from './login.routing';
 import { SharedModule } from '../shared/shared.module';
+import { ModalLoginComponent } from './modal-login/modal-login.component';
 
 @NgModule({
     imports: [
@@ -18,8 +19,8 @@ import { SharedModule } from '../shared/shared.module';
         SharedModule,
         RouterModule.forChild(loginRoutes)
     ],
-    exports: [],
-    declarations: [LoginComponent],
+    exports: [ModalLoginComponent],
+    declarations: [LoginComponent, ModalLoginComponent],
     providers: [LoginService],
 })
 export class LoginModule { }
