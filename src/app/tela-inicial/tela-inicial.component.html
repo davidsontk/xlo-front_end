@@ -2,25 +2,91 @@
     tela inicial que será aberta com o sistema
     tela inicial que será aberta com o sistema
 
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
-    tela inicial que será aberta com o sistema
 
 </div>
+<div id='busca-detalhada' class="form-group">
+    <div>
+        <h1>Busca Detalhada</h1>
+    </div>
+    <div class="form-group">
+        <form name="buscadetalhada" action="/busca" method="GET">
+            <div class="row">
+                <div class="col">
+                    <label>*Tipo:</label>
+                    <select name="tipo" id='tipo-detalha' class="sel-1">
+                        <option value="1" selected>Carros</option>
+                        <option value="2">Motos</option>
+                        <option value="3">Caminhôes</option>
+                    </select>
+                </div>
+                <div class="col" id="input-busca">
+                    <label>Palavra-chave:</label>
+                    <input type="text" name="inputbusca" id="inputbusca" placeholder="Descrição" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" marginleft=30px>
+                    <div class="col">
+
+                        <label for="deano" class="col-form-label">Ano de:</label>
+
+                        <input id="deano" type="range" value="1950" min="1950" max="2050" oninput="txdeano.value=value"
+                            onchange="txdeano.value=value">
+                        <input type="text" id="txdeano" oninput="deano.value=value" onchange="deano.value=value"
+                            class="">
+                    </div>
+                    <div class="col">
+                        <label for="ateano" class="col-form-label">Até ano:</label>
+
+                        <input id="ateano" type="range" value="2050" min="1960" max="2050"
+                            oninput="txateano.value=value" onchange="txateano.value=value">
+                        <input type="text" id="txateano" oninput="ateano.value=value" onchange="ateano.value=value"
+                            class="">
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <label for="valorinicio" class="col-form-label">Valor mínimo:</label>
+
+                        <input id="valorinicio" type="range" value="0" min="0" max="10000000" step="1000"
+                            oninput="txvalorinicio.value=value" onchange="txvalorinicio.value=value">
+                        <input type="text" id="txvalorinicio" oninput="valorinicio.value=value"
+                            onchange="valorinicio.value=value" class="">
+
+                    </div>
+                    <div class="row">
+                        <label for="valorfim" class="col-form-label">Valor máximo:</label>
+
+                        <input id="valorfim" type="range" value="10000000" min="0" max="10000000" step="1000"
+                            oninput="txvalorfim.value=value" onchange="txvalorfim.value=value">
+                        <input type="text" id="txvalorfim" oninput="valorfim.value=value"
+                            onchange="valorfim.value=value" class="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="form-check-inline" id="usofotos">
+                    <label>Estado de uso:</label>
+                    <select name="estado" id='estado-de-uso' class="sel-1">
+                        <option value="0" selected>Todos</option>
+                        <option value="1">Usados</option>
+                        <option value="2">Novos</option>
+                    </select>
+
+                    <label class="form-check-label" for="com-fotos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Somente com
+                        foto?</label>
+                    <input class="form-check-input" type="checkbox" value="true" id="com-fotos">
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <button class="btn btn-info">BUSCAR (quando implementar)</button>
+            </div>
+        </form>
+    </div>
+</div>	
