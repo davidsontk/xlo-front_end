@@ -1,8 +1,35 @@
 <div class="row">
-    <div class="row">
-        <h1 class="center">Busca Detalhada</h1>
-    </div>
+    <h2>Pesquisar Veiculos</h2>
+</div>
+<div class="row">
     <div class="col-md-4">
+        <div class="card">
+            <div class="card-header center">
+                Campos
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div>
+                        <label for="tipo-veiculo">Tipo Veiculo</label>
+                        <select class="form-control" id="tipo-veiculo">
+                            <option *ngFor="let tipo of listaTipoVeiculos">{{tipo.tipoNome}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="marca-veiculo">Marca Veiculo</label>
+                        <select class="form-control" id="marca-veiculo">
+                            <option *ngFor="let marcaVeiculo of listaMarcaVeiculos">{{marcaVeiculo.marca}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <br />
+                        <br />
+                        <input type="text" placeholder="Pesquisa dinâmica">
+                    </div>
+                </div>
+                <button class="btn btn-primary">Buscar</button>
+            </div>
+        </div>
         <!-- <div id='busca-detalhada' class="form-group">
             <div class="form-group">
                 <form name="buscadetalhada" action="/busca" method="GET">

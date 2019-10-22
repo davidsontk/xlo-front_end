@@ -12,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { appRoutes } from './app.routing';
 import { LoginModule } from './login/login.module';
 import { ToastrModule } from 'ngx-toastr';
+import { TelaInicialService } from './tela-inicial/tela-inicial.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   exports: [
   ],
-  providers: [],
+  providers: [TelaInicialService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
