@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
     {
-        path: '', redirectTo: 'login', pathMatch: 'full'
+        path: '', redirectTo: 'tela', pathMatch: 'full'
     },
     {
         path: 'login',
