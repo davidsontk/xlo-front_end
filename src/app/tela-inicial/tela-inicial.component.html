@@ -110,9 +110,27 @@
                 </form>
             </div>
         </div> -->
-        
     </div>
-    <div class="col-md-8 col-lg-6 mb-3 border-box" style="max-width: 1000px;">
+    <div class="col-md-8 col-lg-8 col-sm-12 mb-3 border-box d-flex flex-wrap mt-5" style="max-width: 1000px;">
+
+        <div class="card ml-3 mb-3 d-flex justify-content-end wrap card-car" *ngFor="let carro of listaVeiculos" style="width: 18rem;">
+            <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{carro.descricao}}</h5>
+              
+              <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
+            </div>
+        </div>
+        <div class="card ml-3 mb-3 card-car" *ngFor="let carro of listaVeiculos" style="width: 18rem;">
+            <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{carro.descricao}}</h5>
+              
+              <span class="car-preco m-auto"><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
+            </div>
+        </div>
+        
+        <!--
         <div class="mt-5" *ngFor="let carro of listaVeiculos">
             <div  class="row perfil-car rounded p-3 ml-3 mr-4">
                 <div class="card mb-1">
@@ -141,6 +159,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
