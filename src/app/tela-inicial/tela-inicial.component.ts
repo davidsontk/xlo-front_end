@@ -1,5 +1,6 @@
 import { TelaInicialService } from './tela-inicial.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastrService, ToastContainerDirective } from 'ngx-toastr';
 
 @Component({
     selector: 'tela-inicial-app',
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TelaInicialComponent implements OnInit {
-
-    constructor(private telaInicialService: TelaInicialService) { }
+    constructor(private telaInicialService: TelaInicialService,
+        private toastrService: ToastrService) { }
 
     ngOnInit() { 
         this.buscarTiposVeiculos();
@@ -54,5 +55,9 @@ export class TelaInicialComponent implements OnInit {
                console.log('Erro ao buscar veículos!', error);
             }
         );
+    }
+
+    buscarVeiculosPorFiltro(){
+        this.toastrService.success('mensagem ', 'titulo toastr');
     }
 }

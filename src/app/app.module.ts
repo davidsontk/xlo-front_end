@@ -22,6 +22,10 @@ import { TelaInicialService } from './tela-inicial/tela-inicial.service';
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      progressBar: true
+    }),
     HttpClientModule,
     LoginModule,
     RouterModule.forRoot(appRoutes)
