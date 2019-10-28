@@ -9,13 +9,14 @@ import { ToastrService, ToastContainerDirective } from 'ngx-toastr';
 })
 
 export class TelaInicialComponent implements OnInit {
+    tipoVeiculo = '';
+    marcaVeiculo = '';
+
     constructor(private telaInicialService: TelaInicialService,
         private toastrService: ToastrService) { }
 
     ngOnInit() { 
         this.buscarTiposVeiculos();
-        this.buscarMarcaVeiculos();
-        this.buscarVeiculos();
     }
 
     listaTipoVeiculos = [];
@@ -35,8 +36,8 @@ export class TelaInicialComponent implements OnInit {
         )
     }
 
-    buscarMarcaVeiculos(){
-        this.telaInicialService.buscarMarcaVeiculos().subscribe(
+    buscarMarcaVeiculos(tipoVeiculo){
+        this.telaInicialService.buscarMarcaVeiculos(tipoVeiculo).subscribe(
             (data: any) => {
                 this.listaMarcaVeiculos = data;
                 console.log('data buscarMarcaVeiculos' , data);
@@ -46,8 +47,9 @@ export class TelaInicialComponent implements OnInit {
             }
         );
     }
-    buscarVeiculos(){
-        this.telaInicialService.buscarVeiculos().subscribe(
+
+    buscarVeiculos(marcaVeiculo, campoDinamico){
+        this.telaInicialService.buscarVeiculos(marcaVeiculo, campoDinamico).subscribe(
             (data:any) =>{
                 this.listaVeiculos = data;
             },
@@ -58,6 +60,32 @@ export class TelaInicialComponent implements OnInit {
     }
 
     buscarVeiculosPorFiltro(){
-        this.toastrService.success('mensagem ', 'titulo toastr');
+        console.log('Antes do role', this.marcaVeiculo);
+        if(this.marcaVeiculo == ''){
+            this.toastrService.error('Marca veiculo deve ser preenchido ', 'Erro na busca');
+        }else{
+            // TODO por enquanto vou enviar o campoDinamico vazio!!!
+            console.log('ENVIANDO ENDPOINT ', this.marcaVeiculo);
+            this.buscarVeiculos(this.marcaVeiculo, '');
+        }
+        //this.toastrService.success('mensagem ', 'titulo toastr');
+    }
+
+    getTipoVeiculo(tipoVeiculo){
+        if(tipoVeiculo.target.value != ''){
+            this.buscarMarcaVeiculos(tipoVeiculo.target.value);
+        }else {
+            this.listaMarcaVeiculos = [];
+        }
+        console.log('Tipo veiculo selecionado ', tipoVeiculo.target.value);
+    }
+
+    getMarcaVeiculo(marcaVeiculo){
+        if(marcaVeiculo.target.value != ''){
+            this.marcaVeiculo = marcaVeiculo.target.value;
+            console.log(this.marcaVeiculo);
+        }else {
+            this.marcaVeiculo = '';
+        }
     }
 }

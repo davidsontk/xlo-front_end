@@ -8,20 +8,21 @@
                 <div class="form-group">
                     <div>
                         <label for="tipo-veiculo">Tipo Veiculo</label>
-                        <select class="form-control" id="tipo-veiculo">
-                            <option *ngFor="let tipo of listaTipoVeiculos">{{tipo.tipoNome}}</option>
+                        <select class="form-control" id="tipo-veiculo" (change)="getTipoVeiculo($event)">
+                            <option value="">Selecione</option>
+                            <option *ngFor="let tipo of listaTipoVeiculos" value="{{tipo.tipoNome}}" >{{tipo.tipoNome}}</option>
                         </select>
                     </div>
                     <div>
                         <label for="marca-veiculo">Marca Veiculo</label>
-                        <select class="form-control" id="marca-veiculo">
+                        <select class="form-control" id="marca-veiculo"  (change)="getMarcaVeiculo($event)">
+                            <option value="">Selecione</option>
                             <option *ngFor="let marcaVeiculo of listaMarcaVeiculos">{{marcaVeiculo.marca}}</option>
                         </select>
                     </div>
                     <div>
                         <br />
-                        <br />
-                        <input type="text" placeholder="Pesquisa dinâmica">
+                        <input class="form-control" type="text" placeholder="Pesquisa dinâmica">
                     </div>
                 </div>
                 <button class="btn btn-primary" (click)="buscarVeiculosPorFiltro()">Buscar</button>
@@ -122,14 +123,14 @@
                 <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
             </div>
         </div>
-        <div class="card ml-3 mb-3 card-car" *ngFor="let carro of listaVeiculos" style="width: 18rem;">
+        <!-- <div class="card ml-3 mb-3 card-car" *ngFor="let carro of listaVeiculos" style="width: 18rem;">
             <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{carro.descricao}}</h5>
 
                 <span class="car-preco m-auto"><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
             </div>
-        </div>
+        </div> -->
 
         <!--
         <div class="mt-5" *ngFor="let carro of listaVeiculos">
