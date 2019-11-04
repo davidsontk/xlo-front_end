@@ -10,7 +10,7 @@ import { ModalLoginComponent } from '../login/modal-login/modal-login.component'
 
 export class MenuComponent implements OnInit {
     nomeUser: string = 'nomeUser';
-    logado: boolean = true;
+    logado: boolean = false;
 
     constructor(private router: Router) { }
 
