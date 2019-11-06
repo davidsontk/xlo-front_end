@@ -23,4 +23,8 @@ export class MenuComponent implements OnInit {
     rotaCadastroUsuario(): void {
         this.router.navigateByUrl('/admin/cadastrar-usuario');
     }
+    
+    rotaAnuncio(){
+        this.router.navigateByUrl('/anuncio');
+    }
 }

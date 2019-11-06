@@ -22,13 +22,16 @@ export class TelaInicialService {
 
         return this.httpClient.get(environment.url_api + "campos/marca-veiculo/" + tipoVeiculo);
     }
-    buscarVeiculos(marcaVeiculo, campoDinamico){
-        //TODO - retirar
-        campoDinamico= null;
+    
+    buscarVeiculos(marcaVeiculo, campoDinamico, pagina, tamanhoPagina){
+        //verificando se o campo esta vazio, para n dar erro no endpoint
+        if(campoDinamico == ''){
+            campoDinamico = null;
+        }
         let httpOptions = new HttpHeaders();
         httpOptions.append( 'Content-Type','applictaion/json;charset=UTF-8');
 
-        return this.httpClient.get(environment.url_api + "campos/buscarVeiculos/" + marcaVeiculo + '/' + campoDinamico);
+        return this.httpClient.get(environment.url_api + "campos/buscarVeiculos/" + marcaVeiculo + '/' + campoDinamico+ '/' + pagina + '/' + tamanhoPagina, {headers: httpOptions});
     }
 
 
