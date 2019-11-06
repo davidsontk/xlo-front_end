@@ -10,7 +10,7 @@ import { ModalLoginComponent } from '../login/modal-login/modal-login.component'
 
 export class MenuComponent implements OnInit {
     nomeUser: string = 'nomeUser';
-    logado: boolean = true;
+    logado: boolean = false;
 
     constructor(private router: Router) { }
 
@@ -22,5 +22,9 @@ export class MenuComponent implements OnInit {
 
     rotaCadastroUsuario(): void {
         this.router.navigateByUrl('/admin/cadastrar-usuario');
+    }
+    
+    rotaAnuncio(){
+        this.router.navigateByUrl('/anuncio');
     }
 }

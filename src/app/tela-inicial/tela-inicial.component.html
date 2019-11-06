@@ -1,164 +1,74 @@
 <div class="row">
     <div class="col-md-4 mt-5 col-lg-3">
         <div class="card">
-            <div class="card-header center">
-                Campos
+            <div class="card-header text-center">
+                Pesquisar Veículos
             </div>
             <div class="card-body">
                 <div class="form-group">
                     <div>
                         <label for="tipo-veiculo">Tipo Veiculo</label>
-                        <select class="form-control" id="tipo-veiculo">
-                            <option *ngFor="let tipo of listaTipoVeiculos">{{tipo.tipoNome}}</option>
+                        <select class="form-control" id="tipo-veiculo" (change)="getTipoVeiculo($event)">
+                            <option value="">Selecione</option>
+                            <option *ngFor="let tipo of listaTipoVeiculos" value="{{tipo.tipoNome}}">{{tipo.tipoNome}}
+                            </option>
                         </select>
                     </div>
                     <div>
                         <label for="marca-veiculo">Marca Veiculo</label>
-                        <select class="form-control" id="marca-veiculo">
+                        <select class="form-control" id="marca-veiculo" (change)="getMarcaVeiculo($event)">
+                            <option value="">Selecione</option>
                             <option *ngFor="let marcaVeiculo of listaMarcaVeiculos">{{marcaVeiculo.marca}}</option>
                         </select>
                     </div>
                     <div>
                         <br />
-                        <br />
-                        <input type="text" placeholder="Pesquisa dinâmica">
+                        <input class="form-control" type="text" placeholder="Pesquisa dinâmica"
+                            [(ngModel)]="campoDinamico">
                     </div>
                 </div>
-                <button class="btn btn-primary">Buscar</button>
+                <button class="btn btn-primary mr-1" (click)="buscarVeiculosPorFiltro()">Buscar</button>
+                <button class="btn btn-danger" (click)="limparFiltro()">Limpar</button>
             </div>
         </div>
-        <!-- <div id='busca-detalhada' class="form-group">
-            <div class="form-group">
-                <form name="buscadetalhada" action="/busca" method="GET">
-                    <div class="row">
-                        <div class="col">
-                            <label>*Tipo:</label>
-                            <select name="tipo" id='tipo-detalha' class="sel-1">
-                                <option value="1" selected>Carros</option>
-                                <option value="2">Motos</option>
-                                <option value="3">Caminhôes</option>
-                            </select>
-                        </div>
-                        <div class="col" id="input-busca">
-                            <label>Palavra-chave:</label>
-                            <input type="text" name="inputbusca" id="inputbusca" placeholder="Descrição" />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col" marginleft=30px>
-                            <div class="col">
-
-                                <label for="deano" class="col-form-label">Ano de:</label>
-
-                                <input id="deano" type="range" value="1950" min="1950" max="2050"
-                                    oninput="txdeano.value=value" onchange="txdeano.value=value">
-                                <input type="text" id="txdeano" oninput="deano.value=value" onchange="deano.value=value"
-                                    class="">
-                            </div>
-                            <div class="col">
-                                <label for="ateano" class="col-form-label">Até ano:</label>
-
-                                <input id="ateano" type="range" value="2050" min="1960" max="2050"
-                                    oninput="txateano.value=value" onchange="txateano.value=value">
-                                <input type="text" id="txateano" oninput="ateano.value=value"
-                                    onchange="ateano.value=value" class="">
-
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-
-                                <label for="valorinicio" class="col-form-label">Valor mínimo:</label>
-
-                                <input id="valorinicio" type="range" value="0" min="0" max="10000000" step="1000"
-                                    oninput="txvalorinicio.value=value" onchange="txvalorinicio.value=value">
-                                <input type="text" id="txvalorinicio" oninput="valorinicio.value=value"
-                                    onchange="valorinicio.value=value" class="">
-
-                            </div>
-                            <div class="row">
-                                <label for="valorfim" class="col-form-label">Valor máximo:</label>
-
-                                <input id="valorfim" type="range" value="10000000" min="0" max="10000000" step="1000"
-                                    oninput="txvalorfim.value=value" onchange="txvalorfim.value=value">
-                                <input type="text" id="txvalorfim" oninput="valorfim.value=value"
-                                    onchange="valorfim.value=value" class="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="form-check-inline" id="usofotos">
-                            <label>Estado de uso:</label>
-                            <select name="estado" id='estado-de-uso' class="sel-1">
-                                <option value="0" selected>Todos</option>
-                                <option value="1">Usados</option>
-                                <option value="2">Novos</option>
-                            </select>
-
-                            <label class="form-check-label" for="com-fotos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Somente com
-                                foto?</label>
-                            <input class="form-check-input" type="checkbox" value="true" id="com-fotos">
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <button class="btn btn-info">BUSCAR (quando implementar)</button>
-                    </div>
-                </form>
-            </div>
-        </div> -->
     </div>
     <div class="col-md-8 col-lg-8 col-sm-12 mb-3 border-box d-flex flex-wrap mt-5" style="max-width: 1400px;">
 
-        <div class="card ml-3 mb-3 d-flex justify-content-end wrap card-car" *ngFor="let carro of listaVeiculos" style="width: 18rem;">
+        <!-- <div class="card ml-3 mb-3 d-flex justify-content-end wrap card-car" *ngFor="let carro of listaVeiculos"
+            style="width: 18rem;">
             <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{carro.descricao}}</h5>
-              
-              <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
-            </div>
-        </div>
-        <div class="card ml-3 mb-3 card-car" *ngFor="let carro of listaVeiculos" style="width: 18rem;">
-            <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{carro.descricao}}</h5>
-              
-              <span class="car-preco m-auto"><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
-            </div>
-        </div>
-        
-        <!--
-        <div class="mt-5" *ngFor="let carro of listaVeiculos">
-            <div  class="row perfil-car rounded p-3 ml-3 mr-4">
-                <div class="card mb-1">
-                    <div class="row no-gutters">
-                        <div class="col-md-6">
-                            <img src="../assets/cars/{{carro.id}}.jpg" class="card-img" alt="{{carro.descricao}}">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">{{carro.descricao}}</h5>
-                                <ul class="list-group list-group-flush">
+                <h5 class="card-title">{{carro.descricao}}</h5>
 
-                                    <li class="list-group-item pl-0"><h6>{{carro.marca.tipoVeiculo.tipoNome}} - {{carro.marca.marca}}</h6></li>
-                                    <li class="list-group-item pl-0"><strong>Ano:</strong> {{carro.ano}}</li>
-                                    <li class="list-group-item pl-0"><strong>KM:</strong> {{carro.kmRodado}}</li>
-                                    <li class="list-group-item pl-0"><strong>Preço:</strong> {{carro.preco}}.00 R$</li>
-                                </ul>
-                                <p class="card-text"><small class="text-muted">Documento atrasado</small></p>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary mr-2">Ver Fotos</button>
-                                <button class="btn btn-secondary mr-2">Demonstrar interesse</button>
-                                <button class="btn btn-secondary mr-2">Telefone</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
             </div>
-        </div>-->
+        </div> -->
+
+        <div class="card ml-3 mb-3 d-flex justify-content-end wrap card-car" style="width: 18rem;" *ngFor="let carro of listaVeiculos | 
+        paginate: { itemsPerPage: quantidadePorPagina, 
+        currentPage: paginaAtual, totalItems: quantidadeTotalElementos}">
+            <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{carro.descricao}}</h5>
+
+                <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center">
+                <pagination-controls (pageChange)="mudarPagina($event)" previousLabel="Anterior" nextLabel="Proximo"
+                    responsive="true">
+                </pagination-controls>
+                <label>Itens por Página
+                    <select [(ngModel)]="quantidadePorPagina" (click)="mudarPagina(paginaAtual)">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </label>
+            </div>
+        </div>
     </div>
+    
 </div>

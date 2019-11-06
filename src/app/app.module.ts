@@ -13,15 +13,20 @@ import { appRoutes } from './app.routing';
 import { LoginModule } from './login/login.module';
 import { ToastrModule } from 'ngx-toastr';
 import { TelaInicialService } from './tela-inicial/tela-inicial.service';
+import { ModalLoginComponent } from './login/modal-login/modal-login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      progressBar: true
+    }),
     HttpClientModule,
     LoginModule,
     RouterModule.forRoot(appRoutes)

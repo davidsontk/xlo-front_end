@@ -24,6 +24,10 @@ export const appRoutes: Routes = [
             {
                 path: 'admin',
                 loadChildren: './admin/admin.module#AdminModule'
+            },
+            {
+                path:'anuncio',
+                loadChildren:'./anuncio/anuncio.module#AnuncioModule'
             }
         ]
     },

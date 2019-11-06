@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { TelaInicialComponent } from './tela-inicial.component';
 import { telaInicialRoutes } from './tela-inicial.routing';
@@ -12,6 +13,7 @@ import { telaInicialRoutes } from './tela-inicial.routing';
         CommonModule,
         SharedModule,
         FormsModule,
+        NgxPaginationModule,
         ReactiveFormsModule,
         RouterModule.forChild(telaInicialRoutes)
     ],
