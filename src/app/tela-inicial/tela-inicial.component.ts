@@ -1,6 +1,7 @@
 import { TelaInicialService } from './tela-inicial.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService, ToastContainerDirective } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'tela-inicial-app',
@@ -14,7 +15,7 @@ export class TelaInicialComponent implements OnInit {
     campoDinamico = '';
 
     constructor(private telaInicialService: TelaInicialService,
-        private toastrService: ToastrService) { }
+        private toastrService: ToastrService, private router: Router) { }
 
     ngOnInit() {
         this.buscarTiposVeiculos();
@@ -112,5 +113,9 @@ export class TelaInicialComponent implements OnInit {
         } else {
             this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, (this.paginaAtual), this.quantidadePorPagina);
         }
+    }
+
+    rotaDetalhesDoAnuncio(){
+        this.router.navigateByUrl('/anuncio/detalhes-anuncio');
     }
 }

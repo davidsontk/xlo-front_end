@@ -1,8 +1,9 @@
-import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
-import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.component';
 import { Routes } from '@angular/router';
 
 import { ListaAnunciosComponent } from './lista-anuncios.component';
+import { DetalhesAnuncioComponent } from './detalhes-anuncio/detalhes-anuncio.component';
+import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
+import { CadastroAnuncioComponent } from './cadastro-anuncio/cadastro-anuncio.component';
 
 export const anuncioRoutes: Routes = [
     {
@@ -19,5 +20,9 @@ export const anuncioRoutes: Routes = [
     {
         path:'editar-anuncio',
         component: EditarAnuncioComponent
+    },
+    {
+        path: 'detalhes-anuncio',
+        component: DetalhesAnuncioComponent
     }
 ]
