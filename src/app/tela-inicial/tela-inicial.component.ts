@@ -28,6 +28,7 @@ export class TelaInicialComponent implements OnInit {
     buscarTiposVeiculos() {
         this.telaInicialService.buscarTiposVeiculo().subscribe(
             (data: any) => {
+                console.log();
                 this.listaTipoVeiculos = data;
                 console.log('data buscarTiposVeiculos', data);
             },
@@ -53,8 +54,8 @@ export class TelaInicialComponent implements OnInit {
     paginaAtual: number = 0;
     quantidadePorPagina: number = 10;
 
-    buscarVeiculos(marcaVeiculo, campoDinamico, pagina, tamanhoPagina) {
-        this.telaInicialService.buscarVeiculos(marcaVeiculo, campoDinamico, pagina, tamanhoPagina).subscribe(
+    buscarVeiculos(tipoVeiculo, marcaVeiculo, campoDinamico, pagina, tamanhoPagina) {
+        this.telaInicialService.buscarVeiculos(tipoVeiculo, marcaVeiculo, campoDinamico, pagina, tamanhoPagina).subscribe(
             (data: any) => {
                 console.log('Veiculos recebidos = ', data);
                 this.quantidadeTotalElementos = data.totalElements;
@@ -74,13 +75,14 @@ export class TelaInicialComponent implements OnInit {
             console.log('ENVIANDO ENDPOINT ', this.marcaVeiculo);
             console.log('ENVIANDO campoDinamico ', this.campoDinamico);
 
-            this.buscarVeiculos(this.marcaVeiculo, this.campoDinamico, 0, 10);
+            this.buscarVeiculos(this.tipoVeiculo ,this.marcaVeiculo, this.campoDinamico, 0, 10);
         }
         //this.toastrService.success('mensagem ', 'titulo toastr');
     }
 
     getTipoVeiculo(tipoVeiculo) {
         if (tipoVeiculo.target.value != '') {
+            this.tipoVeiculo = tipoVeiculo.target.value;
             this.buscarMarcaVeiculos(tipoVeiculo.target.value);
         } else {
             this.listaMarcaVeiculos = [];
@@ -106,9 +108,9 @@ export class TelaInicialComponent implements OnInit {
     mudarPagina(pageChange) {
         this.paginaAtual = pageChange;
         if (pageChange >= 1) {
-            this.buscarVeiculos(this.marcaVeiculo, this.campoDinamico, (this.paginaAtual - 1), this.quantidadePorPagina);
+            this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, (this.paginaAtual - 1), this.quantidadePorPagina);
         } else {
-            this.buscarVeiculos(this.marcaVeiculo, this.campoDinamico, (this.paginaAtual), this.quantidadePorPagina);
+            this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, (this.paginaAtual), this.quantidadePorPagina);
         }
     }
 }
