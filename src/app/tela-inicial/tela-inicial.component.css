@@ -9,3 +9,10 @@
 .card-car{
     border-radius:0.4rem;
 }
+.flex-basis-100{
+    flex-basis:100%;
+}
+.conteudoCentral{
+    min-height:700px;
+    max-width:1230px;
+}

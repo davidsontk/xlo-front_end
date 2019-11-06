@@ -32,34 +32,34 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8 col-lg-8 col-sm-12 mb-3 border-box d-flex flex-wrap mt-5" style="max-width: 1400px;">
+    <div class="col-md-8 col-lg-8 col-sm-12 mb-3 mt-5" >
+        <div class="conteudoCentral border-box d-flex justify-content-start flex-wrap">
+            <div class="card ml-3 mb-3 d-flex wrap card-car" *ngFor="let carro of listaVeiculos"
+                style="width: 18rem;">
+                <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{carro.descricao}}</h5>
 
-        <!-- <div class="card ml-3 mb-3 d-flex justify-content-end wrap card-car" *ngFor="let carro of listaVeiculos"
-            style="width: 18rem;">
-            <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{carro.descricao}}</h5>
-
-                <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
+                    <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
+                </div>
             </div>
-        </div> -->
 
-        <div class="card ml-3 mb-3 d-flex justify-content-end wrap card-car" style="width: 18rem;" *ngFor="let carro of listaVeiculos | 
-        paginate: { itemsPerPage: quantidadePorPagina, 
-        currentPage: paginaAtual, totalItems: quantidadeTotalElementos}">
-            <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{carro.descricao}}</h5>
+            <div class="card ml-3 mb-3 d-flex justify-content-around wrap card-car" style="width: 18rem;" *ngFor="let carro of listaVeiculos | 
+            paginate: { itemsPerPage: quantidadePorPagina, 
+            currentPage: paginaAtual, totalItems: quantidadeTotalElementos}">
+                <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{carro.descricao}}</h5>
 
-                <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
+                    <span class=""><i class="mr-2 fa fa-money-bill-wave"></i>{{carro.preco}} R$</span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="text-center">
+            
+            <div class="flex-grow-1 flex-basis-100 d-flex flex-row justify-content-center mt-auto">
                 <pagination-controls (pageChange)="mudarPagina($event)" previousLabel="Anterior" nextLabel="Proximo"
                     responsive="true">
                 </pagination-controls>
-                <label>Itens por Página
+                <label class="d-none">Itens por Página
                     <select [(ngModel)]="quantidadePorPagina" (click)="mudarPagina(paginaAtual)">
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -69,6 +69,5 @@
                 </label>
             </div>
         </div>
-    </div>
-    
+    </div>  
 </div>
