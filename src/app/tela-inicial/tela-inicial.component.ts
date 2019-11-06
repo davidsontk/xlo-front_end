@@ -13,12 +13,14 @@ export class TelaInicialComponent implements OnInit {
     tipoVeiculo = '';
     marcaVeiculo = '';
     campoDinamico = '';
+    comFiltro: boolean = false;
 
     constructor(private telaInicialService: TelaInicialService,
         private toastrService: ToastrService, private router: Router) { }
 
     ngOnInit() {
         this.buscarTiposVeiculos();
+        this.buscarTodosVeiculos(0,10);
     }
 
     listaTipoVeiculos = [];
@@ -69,6 +71,7 @@ export class TelaInicialComponent implements OnInit {
     }
 
     buscarVeiculosPorFiltro() {
+        this.comFiltro = true;
         console.log('Antes do role', this.marcaVeiculo);
         if (this.marcaVeiculo == '') {
             this.toastrService.error('Marca veiculo deve ser preenchido ', 'Erro na busca');
@@ -76,9 +79,10 @@ export class TelaInicialComponent implements OnInit {
             console.log('ENVIANDO ENDPOINT ', this.marcaVeiculo);
             console.log('ENVIANDO campoDinamico ', this.campoDinamico);
 
-            this.buscarVeiculos(this.tipoVeiculo ,this.marcaVeiculo, this.campoDinamico, 0, 10);
+            this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, 0, 10);
         }
         //this.toastrService.success('mensagem ', 'titulo toastr');
+
     }
 
     getTipoVeiculo(tipoVeiculo) {
@@ -108,14 +112,36 @@ export class TelaInicialComponent implements OnInit {
 
     mudarPagina(pageChange) {
         this.paginaAtual = pageChange;
-        if (pageChange >= 1) {
-            this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, (this.paginaAtual - 1), this.quantidadePorPagina);
+        if (this.comFiltro) {
+            if (pageChange >= 1) {
+                this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, (this.paginaAtual - 1), this.quantidadePorPagina);
+            } else {
+                this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, (this.paginaAtual), this.quantidadePorPagina);
+            }
         } else {
-            this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, (this.paginaAtual), this.quantidadePorPagina);
+            if (pageChange >= 1) {
+                this.buscarTodosVeiculos((this.paginaAtual - 1), this.quantidadePorPagina);
+            } else {
+                this.buscarTodosVeiculos(this.paginaAtual, this.quantidadePorPagina);
+            }
         }
+
     }
 
-    rotaDetalhesDoAnuncio(){
+    buscarTodosVeiculos(pagina, tamanhoPagina) {
+        this.telaInicialService.buscarTodosVeiculos(pagina, tamanhoPagina).subscribe(
+            (data: any) => {
+                console.log('TODOS VEICULOSS RECEBIDOS', data);
+                this.quantidadeTotalElementos = data.totalElements;
+                this.listaVeiculos = data.content;
+            },
+            (error: any) => {
+                console.log('Erro ao buscarTodosVeiculos', error)
+            }
+        );
+    }
+
+    rotaDetalhesDoAnuncio() {
         this.router.navigateByUrl('/anuncio/detalhes-anuncio');
     }
 }
