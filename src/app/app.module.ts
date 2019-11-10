@@ -13,7 +13,8 @@ import { appRoutes } from './app.routing';
 import { LoginModule } from './login/login.module';
 import { ToastrModule } from 'ngx-toastr';
 import { TelaInicialService } from './tela-inicial/tela-inicial.service';
-import { ModalLoginComponent } from './login/modal-login/modal-login.component';
+import { LoginService } from './login/login.service';
+import { AdminService } from './admin/admin.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { ModalLoginComponent } from './login/modal-login/modal-login.component';
   ],
   exports: [
   ],
-  providers: [TelaInicialService],
+  providers: [TelaInicialService,
+    LoginService,
+    AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

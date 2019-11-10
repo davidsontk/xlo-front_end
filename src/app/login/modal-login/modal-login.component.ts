@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
@@ -12,10 +13,13 @@ import { Usuario } from 'src/app/shared/models/usuario';
 export class ModalLoginComponent implements OnInit {
   formLogin: FormGroup;
   load: boolean = false;
+  
+  @Output() fecharModal = new EventEmitter<string>();
 
   constructor(private loginService: LoginService,
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.formLogin = this.fb.group({
@@ -31,14 +35,17 @@ export class ModalLoginComponent implements OnInit {
     usuario.password = this.formLogin.get('senha').value;
     this.loginService.logar(usuario).subscribe(
       (data: any) => {
-        console.log('DADO QUE CHEGOU ', data);
+        this.toastrService.success(data.message, 'Sucesso');
         sessionStorage.setItem('user', JSON.stringify(data.usuario));
-        console.log('passei por aqui');
-        this.router.navigateByUrl('tela');
+        this.fecharModal.emit(data.message);
       },
-      (error) => {
-        console.log('Erro ao tentar logar = ', error);
-
+      (error: any) => {
+        console.log
+        if (error.error.error == 'Unauthorized' && error.error.status == 401) {
+          this.toastrService.error('E-mail ou senha incorretos', 'Erro');
+        } else {
+          console.log('Erro ao tentar logar = ', error);
+        }
       }
     );
   }

@@ -5,4 +5,5 @@ export class Usuario {
     enable: boolean;
     perfil: string;
     username: string;
+    lastname: string;
 }

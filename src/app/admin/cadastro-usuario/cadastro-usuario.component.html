@@ -1,3 +1,74 @@
-<div class="container-fluid">
-    tela de cadastro de usuario
+<div class="row">
+  <div class="col-md-8">
+    <div class="page-title">
+      <h4>Novo acesso</h4>
+    </div>
   </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <form class="card" [formGroup]="formCadastro" (ngSubmit)="cadastrar()" novalidate>
+      <div class="card-body">
+        <div class="form-group row">
+          <label for="nome" class="col-md-2 control-label pdd-top-10">Nome</label>
+          <div class="col-md-10">
+            <input class="form-control" formControlName="nome" name="nome" id="nome" placeholder="Ex: Moises Coelho"
+              type="text">
+            <label class="error"
+              *ngIf="formCadastro.get('nome').hasError('required') && formCadastro.get('nome').touched">Nome é
+              obrigatório.</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="nome" class="col-md-2 control-label pdd-top-10">Sobrenome</label>
+          <div class="col-md-10">
+            <input class="form-control" formControlName="sobrenome" name="sobrenome" id="sobrenome"
+              placeholder="Ribeiro da Silva" type="text">
+            <!-- <label class="error"
+              *ngIf="formCadastro.get('sobrenome').hasError('required') && formCadastro.get('sobrenome').touched">Sobronome é
+              obrigatório.</label> -->
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-md-2 control-label pdd-top-10">E-mail</label>
+          <div class="col-md-10">
+            <input class="form-control" formControlName="email" name="email" id="email"
+              placeholder="Ex: user@nastek.com.br" type="email">
+            <label class="error"
+              *ngIf="formCadastro.get('email').hasError('email') && formCadastro.get('email').touched">Insira um
+              e-mail válido.</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="senha" class="col-md-2 control-label pdd-top-10">Senha</label>
+          <div class="col-md-10">
+            <input class="form-control" formControlName="senha" name="senha" id="senha" placeholder="********"
+              type="password">
+            <label class="error"
+              *ngIf="formCadastro.get('senha').hasError('required') && formCadastro.get('senha').touched">Senha é
+              obrigatório.</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="form-1-1" class="col-md-2 control-label pdd-top-10">Tipo de Acesso</label>
+          <div class="col-md-10">
+            <select class="form-control" formControlName="acesso" (change)="getPerfil($event.target.value)"  >
+              <option *ngFor="let perfil of listaPerfis" value="{{perfil.value}}" >{{perfil.nome}}
+              </option>
+            </select>
+            <label class="error"
+              *ngIf="formCadastro.get('acesso').hasError('required') && formCadastro.get('acesso').touched">Tipo de
+              acesso é obrigatório.</label>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer border top">
+        <ul class="list-unstyled list-inline text-right pdd-vertical-5">
+          <li class="list-inline-item">
+            <button class="btn btn-block btn-success" [disabled]="formCadastro.invalid" type="submit">Cadastrar</button>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
+</div>

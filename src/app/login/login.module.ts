@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { LoginService } from './login.service';
-import { LoginComponent } from './login.component';
-import { loginRoutes } from './login.routing';
 import { SharedModule } from '../shared/shared.module';
 import { ModalLoginComponent } from './modal-login/modal-login.component';
 
@@ -16,11 +14,10 @@ import { ModalLoginComponent } from './modal-login/modal-login.component';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        SharedModule,
-        RouterModule.forChild(loginRoutes)
+        SharedModule
     ],
     exports: [ModalLoginComponent],
-    declarations: [LoginComponent, ModalLoginComponent],
-    providers: [LoginService],
+    declarations: [ModalLoginComponent],
+    providers: [],
 })
 export class LoginModule { }

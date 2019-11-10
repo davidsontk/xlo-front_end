@@ -1,3 +1,5 @@
+import { Usuario } from 'src/app/shared/models/usuario';
+import { LoginService } from './../login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalLoginComponent } from '../login/modal-login/modal-login.component'
@@ -9,12 +11,17 @@ import { ModalLoginComponent } from '../login/modal-login/modal-login.component'
 })
 
 export class MenuComponent implements OnInit {
-    nomeUser: string = 'nomeUser';
+    usuarioLogado: Usuario;
     logado: boolean = false;
 
     constructor(private router: Router) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
+        if(this.usuarioLogado != undefined || this.usuarioLogado != null){
+            this.logado = true;
+        }
+    }
 
     rotaListaUsuarios(): void {
         this.router.navigateByUrl('admin');
@@ -26,5 +33,18 @@ export class MenuComponent implements OnInit {
     
     rotaAnuncio(){
         this.router.navigateByUrl('/anuncio');
+    }
+
+    fecharModalPai(evento){
+        document.getElementById("clickModal").click();
+        if(evento == 'Usuario logado!'){
+            this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
+            this.logado = true;
+        }
+    }
+
+    deslogar(){
+        sessionStorage.clear();
+        this.logado = false;
     }
 }

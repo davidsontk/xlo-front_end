@@ -1,4 +1,4 @@
-<div class="modal-login mt-5 d-none" tabindex="-1" role="dialog">
+<!-- <div class="modal-login mt-5 d-none" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -57,4 +57,32 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<p class="mrg-btm-15 font-size-13">Por favor, digite suas credenciais
+  para entrar.</p>
+
+<form class="ng-pristine ng-valid" [formGroup]="formLogin" (ngSubmit)="entrar()" novalidate>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" class="form-control" name="email" placeholder="E-mail" formControlName="email">
+        <label class="error" *ngIf="formLogin.get('email').hasError('email') && formLogin.get('email').touched">Insira
+          um e-mail válido.</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label class="width-95">Senha</label>
+        <input type="password" class="form-control" formControlName="senha" placeholder="Senha">
+        <label class="error" *ngIf="formLogin.get('senha').hasError('required') && formLogin.get('senha').touched">Senha
+          é obrigatório.</label>
+      </div>
+    </div>
+  </div>
+  <div class="mrg-top-10 text-right">
+    <button class="btn btn-primary btn-block"  type="submit">Entrar</button>
+  </div>

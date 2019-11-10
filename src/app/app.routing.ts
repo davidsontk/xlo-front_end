@@ -1,24 +1,17 @@
 import { Routes } from '@angular/router';
 
 import { MenuComponent } from './menu/menu.component';
-import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
     {
-        path: '', redirectTo: 'tela', pathMatch: 'full'
-    },
-    {
-        path: 'login',
-        component: LoginComponent,
-        loadChildren: './login/login.module#LoginModule'
-
+        path: '', redirectTo: 'menu', pathMatch: 'full'
     },
     {
         path: '',
         component: MenuComponent,
         children: [
             {
-                path: 'tela',
+                path: 'menu',
                 loadChildren: './tela-inicial/tela-inicial.module#TelaInicialModule' 
             },
             {

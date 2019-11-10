@@ -19,7 +19,7 @@ export class LoginService {
             email: usuario.email,
             password: usuario.password
         };
-        console.log(body);
+        
         return this.httpClient.post(environment.url_api + 'login', body);
     }
 
