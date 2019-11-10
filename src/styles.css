@@ -13,3 +13,7 @@ body{
     margin-top:20px;
     padding-left:0 !important;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
