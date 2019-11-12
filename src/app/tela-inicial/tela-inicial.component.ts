@@ -20,7 +20,7 @@ export class TelaInicialComponent implements OnInit {
 
     ngOnInit() {
         this.buscarTiposVeiculos();
-        this.buscarTodosVeiculos(0,10);
+        this.buscarTodosVeiculos(0,12);
     }
 
     listaTipoVeiculos = [];
@@ -55,7 +55,7 @@ export class TelaInicialComponent implements OnInit {
 
     quantidadeTotalElementos: number = 0;
     paginaAtual: number = 0;
-    quantidadePorPagina: number = 10;
+    quantidadePorPagina: number = 12;
 
     buscarVeiculos(tipoVeiculo, marcaVeiculo, campoDinamico, pagina, tamanhoPagina) {
         this.telaInicialService.buscarVeiculos(tipoVeiculo, marcaVeiculo, campoDinamico, pagina, tamanhoPagina).subscribe(
@@ -79,7 +79,7 @@ export class TelaInicialComponent implements OnInit {
             console.log('ENVIANDO ENDPOINT ', this.marcaVeiculo);
             console.log('ENVIANDO campoDinamico ', this.campoDinamico);
 
-            this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, 0, 10);
+            this.buscarVeiculos(this.tipoVeiculo, this.marcaVeiculo, this.campoDinamico, 0, 12);
         }
         //this.toastrService.success('mensagem ', 'titulo toastr');
 
