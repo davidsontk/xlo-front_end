@@ -11,19 +11,29 @@ export class ListarUsuariosComponent implements OnInit {
 
     constructor(private adminService: AdminService) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.buscarUsuarios();
+    
+    
+        console.log('listarusuarioscomponent');
+    }
 
-    listaUsuarios: Usuario[] = [];
+     listaUsuarios:Usuario;
 
+ //   listaUsuarios: Usuario[] = [];
+   //     listaUsuarios: String[][] ;
     buscarUsuarios() {
+        console.log('buscarusuarios()');
         this.adminService.listarUsuarios().subscribe(
-            (data) => {
+            (data: Usuario) => {
                 console.log('Usuarios recebidos', data);
+                this.listaUsuarios = data;
             },
             (error) => {
                 console.log('Erro ao buscar usuarios', error);
             }
         );
     }
+
 
 }
