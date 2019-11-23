@@ -1,6 +1,7 @@
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/shared/models/usuario';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'listar-usuarios-app',
@@ -9,7 +10,7 @@ import { Usuario } from 'src/app/shared/models/usuario';
 
 export class ListarUsuariosComponent implements OnInit {
 
-    constructor(private adminService: AdminService) { }
+    constructor(private router:Router , private adminService: AdminService) { }
 
     ngOnInit() { 
         this.buscarUsuarios();
@@ -35,5 +36,8 @@ export class ListarUsuariosComponent implements OnInit {
         );
     }
 
+    rotaEditarUsuario(){
+        this.router.navigateByUrl('/admin/editar-usuario');
+    }
 
 }
