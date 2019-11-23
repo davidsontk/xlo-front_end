@@ -1,9 +1,12 @@
 import { Veiculo } from 'src/app/shared/models/veiculo';
+import { Opcional } from 'src/app/shared/models/opcional';
 import { CadastroAnuncioService } from './cadastro-anuncio.service';
 import { TelaInicialService } from '../../tela-inicial/tela-inicial.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'cadastro-anuncio-app',
@@ -15,6 +18,8 @@ import { ToastrService } from 'ngx-toastr';
 
 export class CadastroAnuncioComponent implements OnInit {
     veiculo = new Veiculo();
+    formVeiculo: FormGroup;
+    opcionaisSelecao = [];
     marcaVeiculo = '';
     tipoVeiculo = '';
     campoDinamico = '';
@@ -24,8 +29,13 @@ export class CadastroAnuncioComponent implements OnInit {
     listaMarcaVeiculos = [];
     listaTipoVeiculos = [];
 
-    constructor(private telaInicialService: TelaInicialService,private cadastroAnuncioService:CadastroAnuncioService,private router: Router ,toastrService: ToastrService) {
-
+    constructor(
+        private telaInicialService: TelaInicialService,
+        private cadastroAnuncioService:CadastroAnuncioService,
+        private router: Router ,
+        private toastrService: ToastrService,
+        private fb: FormBuilder
+    ) {
     }
 
     buscarMarcaVeiculos(tipoVeiculo) {
@@ -80,30 +90,50 @@ export class CadastroAnuncioComponent implements OnInit {
                 console.log('erro ao buscar lista opcionais', error);
             }
         )
+    }    
+    selecionaOpcional(){
+        
+        let campos = []
+        
+        campos = $('.opcional-input:checked').map(function(a,b){
+            return($(b).val());
+        });
+        this.opcionaisSelecao = campos;
     }
     cadastrarVeiculo(): void {
-        
         console.log(this.veiculo);
-        console.log('cadastra Veiculo');
-        /*
-        this.veiculo.descricao = document.querySelector('#descricao').nodeValue;
-        this.veiculo.preco = document.querySelector('#preco').nodeValue;
-        this.veiculo.km = document.querySelector('#km').nodeValue;
-        this.veiculo.imagem = document.querySelector('#imagem').nodeValue;
-        this.veiculo.marca = document.querySelector('#marca').nodeValue;
-        this.veiculo.adicionais = document.querySelector('#adicionais').nodeValue;
+        this.veiculo.descricao = this.formVeiculo.get('descricao').value;
+        this.veiculo.preco = this.formVeiculo.get('preco').value;
+        this.veiculo.km = this.formVeiculo.get('km').value;
+        this.veiculo.imagem = this.formVeiculo.get('imagens').value;
+        this.veiculo.marca = this.formVeiculo.get('marca').value;
+        
+        this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
 
-        this.cadastroAnuncioService.cadastrarVeiculo(this.veiculo).subscribe(
+
+        console.log(this.veiculo)
+        this.cadastroAnuncioService.CadastroVeiculo(this.veiculo,this.opcionaisSelecao,this.formVeiculo.get('imagens').value).subscribe(
             (data) => {
                 this.toastrService.success(data, 'Sucesso');
             },
             (error) => {
                 console.log('Erro ao tentar logar usuario', error);
             }
-        );*/
+        );
+        
     
     }
     ngOnInit() {
+        this.formVeiculo = this.fb.group({
+            tipo: ['', Validators.required],
+            marca: ['', Validators.required],
+            descricao: ['', Validators.email],
+            preco: ['', Validators.required],
+            km: ['', Validators.required],
+            imagens: ['', Validators.required],
+            opcionais: ['', Validators.required]
+        });
+
         this.buscarTiposVeiculos()
         this.buscarOpcionais()
     }
