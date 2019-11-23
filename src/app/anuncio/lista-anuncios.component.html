@@ -1,6 +1,46 @@
-<div>
-    listar anuncios, em uma tabela. Ao clicar no anuncio o sistema irá direcionar para uma tela de editar/ excluir anuncio
+<div class="row">
+    <div class="col-md-10">
+        <div class="page-title">
+            <h4>Anúncios</h4>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-info" (click)="cadastroAnuncio()">Novo Anuncio</button>
+    </div>
 </div>
-<button class="btn btn-info" (click)="cadastroAnuncio()"  > rota cadastro anuncio</button>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-block">
+                <div class="table-overflow">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Descricao</th>
+                                <th>Preço</th>
+                                <th>Ano</th>
+                                <th></th>
 
-<button class="btn btn-dark" (click)="editarAnuncio()"  > rota editar/excluir anuncio</button>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-pointer" *ngFor="let veiculo of listaVeiculos">
+                                <!-- (click)="editarUsuario(usuario.email)" -->
+                                <td>{{ veiculo.descricao }}</td>
+                                <td>{{ veiculo.preco }}</td>
+                                <td>{{ veiculo.ano }}</td>
+                                <td>{{veiculo.status}}</td>
+                                <td>
+                                    <button class="btn btn-dark" (click)="editarAnuncio()">Editar Anuncio</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-info" (click)="cadastroAnuncio()"> rota cadastro anuncio</button>
+
+<!-- <button class="btn btn-dark" (click)="editarAnuncio()"> rota editar/excluir anuncio</button> -->

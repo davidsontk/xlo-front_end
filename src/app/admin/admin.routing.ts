@@ -1,5 +1,6 @@
-import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { Routes } from '@angular/router';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
 import { CadastroAnuncioComponent } from '../anuncio/cadastro-anuncio/cadastro-anuncio.component';
 
@@ -12,7 +13,7 @@ export const adminRoutes: Routes = [
         component: ListarUsuariosComponent,
         data: {
             title: 'Todos os Usuários'
-         }
+        }
     },
     {
         path: 'cadastrar-usuario',
@@ -20,5 +21,13 @@ export const adminRoutes: Routes = [
         data: {
             title: 'Novo usuário'
         }
+    },
+    {
+        path: 'editar-usuario',
+        component: EditarUsuarioComponent,
+        data: {
+            title: 'Editar Usuário'
+        }
+
     }
 ];

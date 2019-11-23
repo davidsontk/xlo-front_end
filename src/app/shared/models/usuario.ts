@@ -6,4 +6,5 @@ export class Usuario {
     perfil: string;
     username: string;
     lastname: string;
+    name: string;
 }
