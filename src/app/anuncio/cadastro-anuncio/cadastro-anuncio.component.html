@@ -1,3 +1,83 @@
-<div>
-    tela de cadastro de anuncio
-</div>
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-md-8">
+          <div class="page-title">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+          <form class="card" novalidate>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="nome" class="col-md-2 control-label pdd-top-10">Tipo de veiculo</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="tipo-veiculo" (change)="getTipoVeiculo($event)">
+                            <option value="">Selecione</option>
+                            <option *ngFor="let tipo of listaTipoVeiculos" value="{{tipo.tipoNome}}">{{tipo.tipoNome}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-md-2 control-label pdd-top-10">Marca</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="marca-veiculo" (change)="getMarcaVeiculo($event)">
+                            <option value="">Selecione</option>
+                            <option *ngFor="let marcaVeiculo of listaMarcaVeiculos">{{marcaVeiculo.marca}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+              <div class="form-group row">
+                <label for="nome" class="col-md-2 control-label pdd-top-10">Descricao</label>
+                <div class="col-md-10">
+                  <input class="form-control" name="descricao" id="descricao" placeholder="Fuska lindo de bunito"
+                    type="text">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="nome" class="col-md-2 control-label pdd-top-10">Preço</label>
+                <div class="col-md-10">
+                  <input class="form-control" name="preco" id="preco"
+                    placeholder="100000" type="text">
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <label for="senha" class="col-md-2 control-label pdd-top-10">KM</label>
+                <div class="col-md-10">
+                  <input class="form-control" name="quilometragem" id="quilometragem" placeholder="10000"
+                    type="text">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="form-1-1" class="col-md-2 control-label pdd-top-10">Imagem</label>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                </div>
+              </div>
+              <div class="form-group row d-flex flex-row flex-wrap max-400" >
+                    <label for="form-1-1" class="col-md-2 control-label pdd-top-10">O Veiculo possui</label>
+                    <div class="col-md-10">
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Opcionais</label>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="card-footer border top">
+              <ul class="list-unstyled list-inline text-right pdd-vertical-5">
+                <li class="list-inline-item">
+                  <button class="btn btn-block btn-success" (click)="cadastrarVeiculo()" type="submit">Cadastrar</button>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

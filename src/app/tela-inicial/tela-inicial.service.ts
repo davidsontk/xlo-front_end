@@ -41,6 +41,4 @@ export class TelaInicialService {
         return this.httpClient.get(environment.url_api + 'campos/buscarTodosVeiculos/' + pagina + '/'+ tamanhoPagina, {headers: httpOptions});
     }
 
-
-
 }
