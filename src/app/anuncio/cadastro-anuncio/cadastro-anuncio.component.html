@@ -56,7 +56,7 @@
                 <label for="form-1-1"  class="col-md-2 control-label pdd-top-10">Imagens</label>
                 <div class="col-md-10">
                     <div class="form-group">
-                        <input type="file" formControlName="imagens" multiple="multiple" class="form-control-file" id="exampleFormControlFile1">
+                        <input type="file" formControlName="imagens" multiple="multiple" class="form-control-file" id="exampleFormControlFile1" (change)="inputFileChange($event)">
                     </div>
                 </div>
               </div>
