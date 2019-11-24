@@ -1,11 +1,13 @@
 import { AnuncioService } from './../anuncio.service';
 import { Veiculo } from 'src/app/shared/models/veiculo';
+import { Usuario } from 'src/app/shared/models/usuario';
 import { TelaInicialService } from '../../tela-inicial/tela-inicial.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import * as $ from 'jquery';
+
 
 @Component({
     selector: 'cadastro-anuncio-app',
@@ -16,6 +18,7 @@ import * as $ from 'jquery';
 export class CadastroAnuncioComponent implements OnInit {
     veiculo = new Veiculo();
     formVeiculo: FormGroup;
+    usuarioLogado : Usuario;
     listaImagens = [];
     opcionaisSelecao = [];
     marcaVeiculo = '';
@@ -39,6 +42,7 @@ export class CadastroAnuncioComponent implements OnInit {
     ngOnInit() {
         this.formVeiculo = this.fb.group({
             tipo: ['', Validators.required],
+            ano: ['', Validators.required],
             marca: ['', Validators.required],
             descricao: ['', Validators.email],
             preco: ['', Validators.required],
@@ -46,7 +50,8 @@ export class CadastroAnuncioComponent implements OnInit {
             imagens: ['', Validators.required],
             opcionais: ['', Validators.required]
         });
-
+        this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
+        console.log(this.usuarioLogado)
         this.buscarTiposVeiculos()
         this.buscarOpcionais()
     }
@@ -86,13 +91,11 @@ export class CadastroAnuncioComponent implements OnInit {
         } else {
             this.listaMarcaVeiculos = [];
         }
-        console.log('Tipo veiculo selecionado ', tipoVeiculo.target.value);
     }
 
     getMarcaVeiculo(marcaVeiculo) {
         if (marcaVeiculo.target.value != '') {
             this.marcaVeiculo = marcaVeiculo.target.value;
-            console.log(this.marcaVeiculo);
         } else {
             this.marcaVeiculo = '';
         }
@@ -102,7 +105,6 @@ export class CadastroAnuncioComponent implements OnInit {
         this.anuncioService.buscarOpcionais().subscribe(
             (data: any) => {
                 this.opcionais = data;
-                console.log(data);
             },
             (error) => {
                 console.log('erro ao buscar lista opcionais', error);
@@ -112,21 +114,20 @@ export class CadastroAnuncioComponent implements OnInit {
 
     selecionaOpcional() {
 
-        let campos = []
-
+        let campos = [];
         campos = $('.opcional-input:checked').map(function (a, b) {
             return ($(b).val());
         });
-        this.opcionaisSelecao = campos;
+        this.opcionaisSelecao = Array.from(campos);
     }
 
     cadastrarVeiculo(): void {
-        console.log(this.veiculo);
         this.veiculo.descricao = this.formVeiculo.get('descricao').value;
         this.veiculo.preco = this.formVeiculo.get('preco').value;
+        this.veiculo.ano = this.formVeiculo.get('ano').value;
         this.veiculo.km = this.formVeiculo.get('km').value;
         this.veiculo.marca = this.formVeiculo.get('marca').value;
-
+        
         //this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
 
 
@@ -146,7 +147,6 @@ export class CadastroAnuncioComponent implements OnInit {
         if (event.target.files && event.target.files[0]) {
             for (let imagem of event.target.files) {
                 this.listaImagens.push(imagem);
-                console.log(imagem);
             }
         }
     }

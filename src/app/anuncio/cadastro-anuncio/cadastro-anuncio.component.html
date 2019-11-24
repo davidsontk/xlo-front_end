@@ -10,7 +10,7 @@
           <form class="card" [formGroup]="formVeiculo" novalidate>
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="nome" class="col-md-2 control-label pdd-top-10">Tipo de veiculo</label>
+                    <label class="col-md-2 control-label pdd-top-10">Tipo de veiculo</label>
                     <div class="col-md-10">
                         <select class="form-control" formControlName="tipo" id="tipo-veiculo" (change)="getTipoVeiculo($event)">
                             <option value="">Selecione</option>
@@ -31,17 +31,24 @@
 
 
               <div class="form-group row">
-                <label for="nome" class="col-md-2 control-label pdd-top-10">Descricao</label>
+                <label  class="col-md-2 control-label pdd-top-10">Descricao</label>
                 <div class="col-md-10">
                   <input class="form-control" name="descricao" formControlName="descricao" id="descricao" placeholder="Fuska lindo de bunito"
                     type="text">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="nome" class="col-md-2 control-label pdd-top-10">Preço</label>
+                <label  class="col-md-2 control-label pdd-top-10">Preço</label>
                 <div class="col-md-10">
                   <input class="form-control" formControlName="preco" name="preco" id="preco"
                     placeholder="100000" type="text">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-md-2 control-label pdd-top-10">Ano</label>
+                <div class="col-md-10">
+                  <input class="form-control" formControlName="ano" name="ano" id="ano"
+                    placeholder="1999" type="text">
                 </div>
               </div>
               
