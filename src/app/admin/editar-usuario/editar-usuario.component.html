@@ -1,3 +1,40 @@
-<div>
-    tela de editar usuario aqui
-</div>
+<div class="col-md-6">
+    <h2 class="text-center">Editar Usuario: </h2>
+    <form [formGroup]="form" (ngSubmit)="editarUsuario()">
+      <div class="form-group">
+          <label for="enable">enable:</label>
+          <input type="checkbox" formControlName="enable" name="enable" class="" id="enable">
+      </div>
+
+
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+      </div>
+  
+      <div class="form-group">
+        <label for="username">User Name:</label>
+        <input formControlName="username" placeholder="First Name" name="username" class="form-control" id="username">
+      </div>
+  
+      <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input formControlName="lastname" placeholder="Last name" name="lastname" class="form-control" id="lastname">
+      </div>
+
+      <!-- <div class="form-group">
+          <label for="password">senha</label>
+          <input formControlName="password"  name="password" class="form-control" id="password">
+        </div> -->
+
+        <label for="perfil">Perfil: </label>
+        <select class="form-control" formControlName="perfil" (change)="getPerfil($event.target.value)"  >
+            <option *ngFor="let perfil of listaPerfis" value="{{perfil.value}}" >{{perfil.nome}}
+            </option>
+          </select>
+  
+      <button class="btn btn-success">Atualizar</button>
+    </form>
+  </div>
+
+

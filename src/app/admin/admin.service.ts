@@ -26,4 +26,13 @@ export class AdminService {
     }
 
 
+    //FALTA MECHER A PARTIR DAQUI ATÉ BACKEND
+    editarUsuario(usuario: Usuario) {
+        let httpOptions = new HttpHeaders();
+        httpOptions.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(environment.url_api + 'alterarUsuario',  usuario, { headers: httpOptions});
+    }
+
+
 }
