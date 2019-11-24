@@ -19,7 +19,7 @@ export class AnuncioService {
 
     buscarOpcionais() {
         let httpOptions = new HttpHeaders();
-        httpOptions.append('Content-Type', 'applictaion/json;charset=UTF-8');
+        httpOptions.append('Content-Type', 'application/json');
 
         return this.httpClient.get(environment.url_api + "anuncio/opcionais", { headers: httpOptions });
         //return this.httpClient.get(environment.url_api + 'campos/buscarTodosVeiculos/' + pagina + '/'+ tamanhoPagina, {headers: httpOptions});
@@ -27,15 +27,19 @@ export class AnuncioService {
 
     }
 
-    cadastroVeiculo(veiculo: Veiculo, opcionais: Opcional[], imagens: String[]) {
+    cadastroVeiculo(dado) {
         let httpOptions = new HttpHeaders();
-        httpOptions.append('Content-Type', 'applictaion/json;charset=UTF-8');
+        httpOptions.append('Content-Type', 'application/json');
 
-        let anuncio = { 
-            opcionais: 'opcionais', 
-            veiculo: 'veiculo', 
-            imagens: 'imagens' };
-        return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio", anuncio, { headers: httpOptions });
+        return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio", dado, { headers: httpOptions });
     }
 
+    salvarImagem(anuncio, imagem) {
+        let httpOptions = new HttpHeaders();
+        httpOptions.append('Content-Type', 'application/json');
+        const formData: FormData = new FormData();
+        formData.append('imagens', imagem);
+        formData.append('veiculoId', anuncio.id)
+        return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio/salvarImagem", formData);
+    }
 }

@@ -18,7 +18,7 @@ import * as $ from 'jquery';
 export class CadastroAnuncioComponent implements OnInit {
     veiculo = new Veiculo();
     formVeiculo: FormGroup;
-    usuarioLogado : Usuario;
+    usuarioLogado: Usuario;
     listaImagens = [];
     opcionaisSelecao = [];
     marcaVeiculo = '';
@@ -51,7 +51,6 @@ export class CadastroAnuncioComponent implements OnInit {
             opcionais: ['', Validators.required]
         });
         this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
-        console.log(this.usuarioLogado)
         this.buscarTiposVeiculos()
         this.buscarOpcionais()
     }
@@ -127,17 +126,22 @@ export class CadastroAnuncioComponent implements OnInit {
         this.veiculo.ano = this.formVeiculo.get('ano').value;
         this.veiculo.km = this.formVeiculo.get('km').value;
         this.veiculo.marca = this.formVeiculo.get('marca').value;
-        
+        this.veiculo.tipo = this.formVeiculo.get('tipo').value;
         //this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
-
-
-        console.log(this.veiculo);
-        this.anuncioService.cadastroVeiculo(this.veiculo, this.opcionaisSelecao, this.listaImagens).subscribe(
+        let anuncio = {
+            opcionais: this.opcionaisSelecao,
+            veiculo: this.veiculo,
+            idUsuario: this.usuarioLogado.id
+        };
+        console.log(anuncio);
+        this.anuncioService.cadastroVeiculo(anuncio).subscribe(
             (data: any) => {
+                console.log('Anuncio = ', anuncio);
                 this.toastrService.success(data, 'Sucesso');
+                this.salvarImagem(anuncio);
             },
             (error) => {
-                console.log('Erro ao tentar logar usuario', error);
+                console.log('Erro ao tentar o bem bolado', error);
             }
         );
     }
@@ -149,5 +153,16 @@ export class CadastroAnuncioComponent implements OnInit {
                 this.listaImagens.push(imagem);
             }
         }
+    }
+
+    salvarImagem(anuncio: any) {
+        this.anuncioService.salvarImagem(anuncio, this.listaImagens).subscribe(
+            (data: any) => {
+                console.log('sera?');
+            },
+            (error: any) => {
+
+            }
+        );
     }
 }
