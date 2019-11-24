@@ -18,8 +18,6 @@ export class CadastroAnuncioService {
         
         return this.httpClient.get(environment.url_api + "anuncio/opcionais");
         //return this.httpClient.get(environment.url_api + 'campos/buscarTodosVeiculos/' + pagina + '/'+ tamanhoPagina, {headers: httpOptions});
-
-
     }
     
     cadastroVeiculo(veiculo: Veiculo, opcionais: Opcional[], imagens:String[]){
@@ -27,6 +25,8 @@ export class CadastroAnuncioService {
         httpOptions.append( 'Content-Type','applictaion/json;charset=UTF-8');
         
         let dados = {opcionais:opcionais,veiculo:veiculo,imagens:imagens};
+
+        console.log(dados);
         return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio",dados, { headers: httpOptions, responseType: 'text' });
     }    
 }
