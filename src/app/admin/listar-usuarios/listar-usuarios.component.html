@@ -21,10 +21,11 @@
                         </thead>
                         <tbody>
                             <tr class="tr-pointer" *ngFor="let usuario of listaUsuarios">
+                                <td>{{usuario.id}} </td>
                                 <td>{{ usuario.username }}</td>
                                 <td>{{ usuario.email }}</td>
                                 <td>{{ usuario.perfil }}</td>
-                                <td> <button class="btn btn-primary" (click)="rotaEditarUsuario()">Editar</button> </td>
+                                <td> <button class="btn btn-primary" (click)="rotaEditarUsuario(usuario)">Editar</button> </td>
                             </tr>
                         </tbody>
                     </table>
