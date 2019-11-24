@@ -19,6 +19,7 @@ import * as $ from 'jquery';
 export class CadastroAnuncioComponent implements OnInit {
     veiculo = new Veiculo();
     formVeiculo: FormGroup;
+    listaImagens = [];
     opcionaisSelecao = [];
     marcaVeiculo = '';
     tipoVeiculo = '';
@@ -31,96 +32,13 @@ export class CadastroAnuncioComponent implements OnInit {
 
     constructor(
         private telaInicialService: TelaInicialService,
-        private cadastroAnuncioService:CadastroAnuncioService,
-        private router: Router ,
+        private cadastroAnuncioService: CadastroAnuncioService,
+        private router: Router,
         private toastrService: ToastrService,
         private fb: FormBuilder
     ) {
     }
 
-    buscarMarcaVeiculos(tipoVeiculo) {
-        this.telaInicialService.buscarMarcaVeiculos(tipoVeiculo).subscribe(
-            (data: any) => {
-                this.listaMarcaVeiculos = data;
-            },
-            (error) => {
-                console.log('erro ao buscar marca de veiculos', error);
-            }
-        );
-    }
-    limparFiltro() {
-        this.campoDinamico = '';
-        this.listaMarcaVeiculos = [];
-        //this.toastrService.info('Filtro Limpo', 'Informação');
-    }
-    buscarTiposVeiculos() {
-        this.telaInicialService.buscarTiposVeiculo().subscribe(
-            (data: any) => {
-                this.listaTipoVeiculos = data;
-            },
-            (error) => {
-                console.log('erro ao buscar tipo veiculo', error);
-            }
-        )
-    }
-    getTipoVeiculo(tipoVeiculo) {
-        if (tipoVeiculo.target.value != '') {
-            this.tipoVeiculo = tipoVeiculo.target.value;
-            this.buscarMarcaVeiculos(tipoVeiculo.target.value);
-        } else {
-            this.listaMarcaVeiculos = [];
-        }
-        console.log('Tipo veiculo selecionado ', tipoVeiculo.target.value);
-    }
-    getMarcaVeiculo(marcaVeiculo) {
-        if (marcaVeiculo.target.value != '') {
-            this.marcaVeiculo = marcaVeiculo.target.value;
-            console.log(this.marcaVeiculo);
-        } else {
-            this.marcaVeiculo = '';
-        }
-    }
-    buscarOpcionais() {
-        this.cadastroAnuncioService.buscarOpcionais().subscribe(
-            (data: any) => {
-                this.opcionais = data;
-                console.log(data);
-            },
-            (error) => {
-                console.log('erro ao buscar lista opcionais', error);
-            }
-        )
-    }    
-    selecionaOpcional(){
-        
-        let campos = []
-        
-        campos = $('.opcional-input:checked').map(function(a,b){
-            return($(b).val());
-        });
-        this.opcionaisSelecao = campos;
-    }
-    cadastrarVeiculo(): void {
-        console.log(this.veiculo);
-        this.veiculo.descricao = this.formVeiculo.get('descricao').value;
-        this.veiculo.preco = this.formVeiculo.get('preco').value;
-        this.veiculo.km = this.formVeiculo.get('km').value;
-        this.veiculo.imagem = this.formVeiculo.get('imagens').value;
-        this.veiculo.marca = this.formVeiculo.get('marca').value;
-        
-        this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
-
-
-        console.log(this.veiculo)
-        this.cadastroAnuncioService.CadastroVeiculo(this.veiculo,this.opcionaisSelecao,this.formVeiculo.get('imagens').value).subscribe(
-            (data) => {
-                this.toastrService.success(data, 'Sucesso');
-            },
-            (error) => {
-                console.log('Erro ao tentar logar usuario', error);
-            }
-        );
-    }
     ngOnInit() {
         this.formVeiculo = this.fb.group({
             tipo: ['', Validators.required],
@@ -134,5 +52,105 @@ export class CadastroAnuncioComponent implements OnInit {
 
         this.buscarTiposVeiculos()
         this.buscarOpcionais()
+    }
+
+    buscarMarcaVeiculos(tipoVeiculo) {
+        this.telaInicialService.buscarMarcaVeiculos(tipoVeiculo).subscribe(
+            (data: any) => {
+                this.listaMarcaVeiculos = data;
+            },
+            (error) => {
+                console.log('erro ao buscar marca de veiculos', error);
+            }
+        );
+    }
+
+    limparFiltro() {
+        this.campoDinamico = '';
+        this.listaMarcaVeiculos = [];
+        //this.toastrService.info('Filtro Limpo', 'Informação');
+    }
+
+    buscarTiposVeiculos() {
+        this.telaInicialService.buscarTiposVeiculo().subscribe(
+            (data: any) => {
+                this.listaTipoVeiculos = data;
+            },
+            (error) => {
+                console.log('erro ao buscar tipo veiculo', error);
+            }
+        )
+    }
+
+    getTipoVeiculo(tipoVeiculo) {
+        if (tipoVeiculo.target.value != '') {
+            this.tipoVeiculo = tipoVeiculo.target.value;
+            this.buscarMarcaVeiculos(tipoVeiculo.target.value);
+        } else {
+            this.listaMarcaVeiculos = [];
+        }
+        console.log('Tipo veiculo selecionado ', tipoVeiculo.target.value);
+    }
+
+    getMarcaVeiculo(marcaVeiculo) {
+        if (marcaVeiculo.target.value != '') {
+            this.marcaVeiculo = marcaVeiculo.target.value;
+            console.log(this.marcaVeiculo);
+        } else {
+            this.marcaVeiculo = '';
+        }
+    }
+
+    buscarOpcionais() {
+        this.cadastroAnuncioService.buscarOpcionais().subscribe(
+            (data: any) => {
+                this.opcionais = data;
+                console.log(data);
+            },
+            (error) => {
+                console.log('erro ao buscar lista opcionais', error);
+            }
+        )
+    }
+
+    selecionaOpcional() {
+
+        let campos = []
+
+        campos = $('.opcional-input:checked').map(function (a, b) {
+            return ($(b).val());
+        });
+        this.opcionaisSelecao = campos;
+    }
+
+    cadastrarVeiculo(): void {
+        console.log(this.veiculo);
+        this.veiculo.descricao = this.formVeiculo.get('descricao').value;
+        this.veiculo.preco = this.formVeiculo.get('preco').value;
+        this.veiculo.km = this.formVeiculo.get('km').value;
+        this.veiculo.marca = this.formVeiculo.get('marca').value;
+
+        //this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
+
+
+        console.log(this.veiculo)
+        this.cadastroAnuncioService.cadastroVeiculo(this.veiculo, this.opcionaisSelecao, this.listaImagens).subscribe(
+            (data) => {
+                this.toastrService.success(data, 'Sucesso');
+            },
+            (error) => {
+                console.log('Erro ao tentar logar usuario', error);
+            }
+        );
+    }
+
+    inputFileChange(event) {
+        this.listaImagens = [];
+        if (event.target.files && event.target.files[0]) {
+            for(let imagem of event.target.files){
+                this.listaImagens.push(imagem);
+                console.log(imagem);
+            }
+        }
     }
 }

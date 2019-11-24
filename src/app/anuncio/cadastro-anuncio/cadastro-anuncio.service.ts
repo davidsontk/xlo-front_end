@@ -21,17 +21,12 @@ export class CadastroAnuncioService {
 
 
     }
-    CadastroVeiculo(veiculo: Veiculo, opcionais: Opcional[], imagens:String[]){
-        let formData = new FormData();
+    
+    cadastroVeiculo(veiculo: Veiculo, opcionais: Opcional[], imagens:String[]){
         let httpOptions = new HttpHeaders();
         httpOptions.append( 'Content-Type','applictaion/json;charset=UTF-8');
-        /*
-        formData.append('veiculo',veiculo);
-        formData.append('opcionais',opcionais);
-        formData.append('imagens',imagens);
-        */
+        
         let dados = {opcionais:opcionais,veiculo:veiculo,imagens:imagens};
-
         return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio",dados, { headers: httpOptions, responseType: 'text' });
     }    
 }
