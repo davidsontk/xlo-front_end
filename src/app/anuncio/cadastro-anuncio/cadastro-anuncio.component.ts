@@ -136,9 +136,11 @@ export class CadastroAnuncioComponent implements OnInit {
         console.log(anuncio);
         this.anuncioService.cadastroVeiculo(anuncio).subscribe(
             (data: any) => {
-                console.log('Anuncio = ', anuncio);
+                console.log('Anuncio = ', data);
                 this.toastrService.success(data, 'Sucesso');
-                this.salvarImagem(anuncio);
+                for(let i = 0; i < this.listaImagens.length; i++){
+                    this.salvarImagem(this.listaImagens[i], data.id);
+                }
             },
             (error) => {
                 console.log('Erro ao tentar o bem bolado', error);
@@ -155,8 +157,8 @@ export class CadastroAnuncioComponent implements OnInit {
         }
     }
 
-    salvarImagem(anuncio: any) {
-        this.anuncioService.salvarImagem(anuncio, this.listaImagens).subscribe(
+    salvarImagem(imagem, veiculoId: any) {
+        this.anuncioService.salvarImagem(imagem, veiculoId).subscribe(
             (data: any) => {
                 console.log('sera?');
             },

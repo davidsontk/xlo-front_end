@@ -34,12 +34,16 @@ export class AnuncioService {
         return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio", dado, { headers: httpOptions });
     }
 
-    salvarImagem(anuncio, imagem) {
+    salvarImagem(imagem, veiculoId) {
         let httpOptions = new HttpHeaders();
         httpOptions.append('Content-Type', 'application/json');
+
         const formData: FormData = new FormData();
+        console.log('ANNTES DE ENVIAR ', imagem);
+        
         formData.append('imagens', imagem);
-        formData.append('veiculoId', anuncio.id)
-        return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio/salvarImagem", formData);
+        formData.append('veiculoId', veiculoId);
+
+        return this.httpClient.post(environment.url_api + "anuncio/salvarImagem", formData);
     }
 }
