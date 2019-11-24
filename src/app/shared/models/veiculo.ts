@@ -7,4 +7,5 @@ export class Veiculo {
     km: number;
     imagem: string;
     adicionais: [];
+    tipo: string;
 }

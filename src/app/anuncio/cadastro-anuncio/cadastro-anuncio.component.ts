@@ -18,7 +18,7 @@ import * as $ from 'jquery';
 export class CadastroAnuncioComponent implements OnInit {
     veiculo = new Veiculo();
     formVeiculo: FormGroup;
-    usuarioLogado : Usuario;
+    usuarioLogado: Usuario;
     listaImagens = [];
     opcionaisSelecao = [];
     marcaVeiculo = '';
@@ -126,17 +126,24 @@ export class CadastroAnuncioComponent implements OnInit {
         this.veiculo.ano = this.formVeiculo.get('ano').value;
         this.veiculo.km = this.formVeiculo.get('km').value;
         this.veiculo.marca = this.formVeiculo.get('marca').value;
-        
+        this.veiculo.tipo = this.formVeiculo.get('tipo').value;
         //this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
-
-
-        console.log(this.veiculo);
-        this.anuncioService.cadastroVeiculo(this.veiculo, this.opcionaisSelecao, this.listaImagens).subscribe(
+        let anuncio = {
+            opcionais: this.opcionaisSelecao,
+            veiculo: this.veiculo,
+            idUsuario: this.usuarioLogado.id
+        };
+        console.log(anuncio);
+        this.anuncioService.cadastroVeiculo(anuncio).subscribe(
             (data: any) => {
+                console.log('Anuncio = ', data);
                 this.toastrService.success(data, 'Sucesso');
+                for(let i = 0; i < this.listaImagens.length; i++){
+                    this.salvarImagem(this.listaImagens[i], data.id);
+                }
             },
             (error) => {
-                console.log('Erro ao tentar logar usuario', error);
+                console.log('Erro ao tentar o bem bolado', error);
             }
         );
     }
@@ -148,5 +155,16 @@ export class CadastroAnuncioComponent implements OnInit {
                 this.listaImagens.push(imagem);
             }
         }
+    }
+
+    salvarImagem(imagem, veiculoId: any) {
+        this.anuncioService.salvarImagem(imagem, veiculoId).subscribe(
+            (data: any) => {
+                console.log('sera?');
+            },
+            (error: any) => {
+
+            }
+        );
     }
 }
