@@ -62,7 +62,13 @@ export class TelaInicialComponent implements OnInit {
             (data: any) => {
                 console.log('Veiculos recebidos = ', data);
                 this.quantidadeTotalElementos = data.totalElements;
-                this.listaVeiculos = data.content;
+                this.listaVeiculos = data.content.map(function(a){
+                    let adicional = a.descricao.length > 20 ? "..." : "";
+                    a.descricao = a.descricao.slice(0,20) + adicional;
+                    return a;
+                });
+
+
             },
             (error) => {
                 console.log('Erro ao buscar veículos!', error);
@@ -125,7 +131,6 @@ export class TelaInicialComponent implements OnInit {
                 this.buscarTodosVeiculos(this.paginaAtual, this.quantidadePorPagina);
             }
         }
-
     }
 
     buscarTodosVeiculos(pagina, tamanhoPagina) {
@@ -133,7 +138,12 @@ export class TelaInicialComponent implements OnInit {
             (data: any) => {
                 console.log('TODOS VEICULOSS RECEBIDOS', data);
                 this.quantidadeTotalElementos = data.totalElements;
-                this.listaVeiculos = data.content;
+                
+                this.listaVeiculos = data.content.map(function(a){
+                    let adicional = a.descricao.length > 20 ? "..." : "";
+                    a.descricao = a.descricao.slice(0,20) + adicional;
+                    return a;
+                });
             },
             (error: any) => {
                 console.log('Erro ao buscarTodosVeiculos', error)

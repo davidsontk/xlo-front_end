@@ -22,7 +22,7 @@ export const anuncioRoutes: Routes = [
         component: EditarAnuncioComponent
     },
     {
-        path: 'detalhes-anuncio',
+        path: 'detalhes-anuncio/:id',
         component: DetalhesAnuncioComponent
     }
 ]
