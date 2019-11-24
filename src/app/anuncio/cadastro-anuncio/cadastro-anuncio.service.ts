@@ -32,6 +32,6 @@ export class CadastroAnuncioService {
         */
         let dados = {opcionais:opcionais,veiculo:veiculo,imagens:imagens};
 
-        return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio" + 'dados',dados, { headers: httpOptions, responseType: 'text' });
+        return this.httpClient.post(environment.url_api + "anuncio/cadastro-anuncio",dados, { headers: httpOptions, responseType: 'text' });
     }    
 }

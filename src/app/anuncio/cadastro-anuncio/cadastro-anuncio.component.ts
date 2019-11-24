@@ -120,8 +120,6 @@ export class CadastroAnuncioComponent implements OnInit {
                 console.log('Erro ao tentar logar usuario', error);
             }
         );
-        
-    
     }
     ngOnInit() {
         this.formVeiculo = this.fb.group({
