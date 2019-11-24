@@ -1,6 +1,5 @@
+import { AnuncioService } from './../anuncio.service';
 import { Veiculo } from 'src/app/shared/models/veiculo';
-import { Opcional } from 'src/app/shared/models/opcional';
-import { CadastroAnuncioService } from './cadastro-anuncio.service';
 import { TelaInicialService } from '../../tela-inicial/tela-inicial.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -11,9 +10,7 @@ import * as $ from 'jquery';
 @Component({
     selector: 'cadastro-anuncio-app',
     templateUrl: 'cadastro-anuncio.component.html',
-    styleUrls: ['./cadastro-anuncio.component.css'],
-    providers: [CadastroAnuncioService]
-
+    styleUrls: ['./cadastro-anuncio.component.css']
 })
 
 export class CadastroAnuncioComponent implements OnInit {
@@ -32,7 +29,7 @@ export class CadastroAnuncioComponent implements OnInit {
 
     constructor(
         private telaInicialService: TelaInicialService,
-        private cadastroAnuncioService: CadastroAnuncioService,
+        private anuncioService: AnuncioService,
         private router: Router,
         private toastrService: ToastrService,
         private fb: FormBuilder
@@ -102,7 +99,7 @@ export class CadastroAnuncioComponent implements OnInit {
     }
 
     buscarOpcionais() {
-        this.cadastroAnuncioService.buscarOpcionais().subscribe(
+        this.anuncioService.buscarOpcionais().subscribe(
             (data: any) => {
                 this.opcionais = data;
                 console.log(data);
@@ -133,9 +130,9 @@ export class CadastroAnuncioComponent implements OnInit {
         //this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
 
 
-        console.log(this.veiculo)
-        this.cadastroAnuncioService.cadastroVeiculo(this.veiculo, this.opcionaisSelecao, this.listaImagens).subscribe(
-            (data) => {
+        console.log(this.veiculo);
+        this.anuncioService.cadastroVeiculo(this.veiculo, this.opcionaisSelecao, this.listaImagens).subscribe(
+            (data: any) => {
                 this.toastrService.success(data, 'Sucesso');
             },
             (error) => {
@@ -147,7 +144,7 @@ export class CadastroAnuncioComponent implements OnInit {
     inputFileChange(event) {
         this.listaImagens = [];
         if (event.target.files && event.target.files[0]) {
-            for(let imagem of event.target.files){
+            for (let imagem of event.target.files) {
                 this.listaImagens.push(imagem);
                 console.log(imagem);
             }
