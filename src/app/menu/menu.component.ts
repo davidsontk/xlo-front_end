@@ -37,10 +37,10 @@ export class MenuComponent implements OnInit {
 
     fecharModalPai(evento){
         document.getElementById("clickModal").click();
-        if(evento == 'Usuario logado!'){
+            console.log( 'so confirmando', <Usuario>JSON.parse(sessionStorage.getItem('user')));
             this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
             this.logado = true;
-        }
+        
     }
 
     deslogar(){

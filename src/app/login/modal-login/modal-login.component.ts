@@ -35,8 +35,8 @@ export class ModalLoginComponent implements OnInit {
     usuario.password = this.formLogin.get('senha').value;
     this.loginService.logar(usuario).subscribe(
       (data: any) => {
-        this.toastrService.success(data.message, 'Sucesso');
-        sessionStorage.setItem('user', JSON.stringify(data.usuario));
+        this.toastrService.success('Usuario Logado');
+        sessionStorage.setItem('user', JSON.stringify(data));
         this.fecharModal.emit(data.message);
       },
       (error: any) => {
