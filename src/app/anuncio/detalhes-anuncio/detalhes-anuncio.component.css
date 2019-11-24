@@ -1,0 +1,7 @@
+.card-detalhes-veiculo{
+    max-width: 1400px;
+    width: 100%;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%,0);
+}

@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col-md-8">
     <div class="page-title">
-      <h4>Novo acesso</h4>
+      
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 cadastro-centro mt-4">
     <form class="card" [formGroup]="formCadastro" (ngSubmit)="cadastrar()" novalidate>
       <div class="card-body">
+          <h4 class="mb-4">Novo acesso</h4>
         <div class="form-group row">
           <label for="nome" class="col-md-2 control-label pdd-top-10">Nome</label>
           <div class="col-md-10">

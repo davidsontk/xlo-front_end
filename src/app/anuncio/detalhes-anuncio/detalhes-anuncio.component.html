@@ -1,3 +1,43 @@
-<div>
-    tela detalhes do anuncio, onde ao clicar na imagem do carro, irá direcionar para ela!!!
+<div class="row">
+    <div class="col">
+        <div class="card mb-3 mt-4 card-detalhes-veiculo">
+                <div class="row no-gutters">
+                <div class="col-md-6">
+                    <div id="carouselExampleIndicators" style="max-width: 700px;" class="carousel slide rounded" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img src="../assets/cars/{{veiculo.id}}.jpg" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body corpo-detalhes-veiculo">
+                        <h5 class="card-title">{{veiculo.descricao}}</h5>
+                        <p class="card-text">{{veiculo.marca.marca}}</p>
+                        <p class="card-text">Ano {{veiculo.ano}}</p>
+                        <p class="card-text">Quilometragem {{veiculo.kmRodado}}</p>
+                        <p class="card-text">Preço {{veiculo.preco}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <i class="fa fa-star-o icones-veiculo"></i>
+                        <i class="fa fa-phone icones-veiculo"></i>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
 </div>

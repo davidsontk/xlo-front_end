@@ -20,3 +20,38 @@ body{
 .color-green{
     color:green;
 }
+.cadastro-centro{
+   max-width: 1200px;
+   position:absolute;
+   left:50%;
+   transform: translate(-50%,0%);
+}
+
+.icones-veiculo{
+    margin-left:10px;
+    float:right;
+    font-size:3em;
+    margin-top:auto;
+    cursor:pointer;
+}
+.icones-veiculo.fa-phone{
+    position: absolute;
+    bottom:0;
+    right:120px;
+    bottom:20px;
+}
+.icones-veiculo.fa-star-o{
+    position: absolute;
+    bottom:0;
+    right:35px;
+    bottom:20px;
+}
+.icones-veiculo:hover{
+    font-size:4em;
+}
+.icones-veiculo:active{
+    font-size:2.5em;
+}
+.corpo-detalhes-veiculo{
+    height: 80%;
+}

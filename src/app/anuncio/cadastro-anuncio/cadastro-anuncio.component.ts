@@ -54,7 +54,6 @@ export class CadastroAnuncioComponent implements OnInit {
             opcionais: ['', Validators.required]
         });
         this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
-        console.log(this.usuarioLogado)
         this.buscarTiposVeiculos()
         this.buscarOpcionais()
     }
