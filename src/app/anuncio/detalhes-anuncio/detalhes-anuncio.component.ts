@@ -20,14 +20,14 @@ export class DetalhesAnuncioComponent implements OnInit {
     veiculo = new Veiculo();
     quantidadeTotalElementos = 0;
     primeiraImagem = '';
-
+    
     constructor(private route:ActivatedRoute,private telaInicialService: TelaInicialService,private anuncioService: AnuncioService) {
         this.idVeiculo = sessionStorage.carSelected;
     }
 
     buscarVeiculoEspecifico(){
         this.anuncioService.buscarVeiculoEspecifico(this.idVeiculo).subscribe(
-            (data: any) => {
+            (data: any) => {               
                 this.veiculo = data.veiculo;
                 console.log(this.veiculo);
                 this.opcionais = data.opcionais;

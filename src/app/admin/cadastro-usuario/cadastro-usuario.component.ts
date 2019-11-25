@@ -42,7 +42,8 @@ export class CadastroUsuarioComponent implements OnInit {
             sobrenome: ['', Validators.required],
             email: ['', Validators.email],
             senha: ['', Validators.required],
-            acesso: ['', Validators.required]
+            acesso: ['', Validators.required],
+            telefone: ['',Validators.required]
         });
     }
 
@@ -56,10 +57,12 @@ export class CadastroUsuarioComponent implements OnInit {
         this.usuario.email = this.formCadastro.get('email').value;
         this.usuario.password = this.formCadastro.get('senha').value;
         this.usuario.perfil = this.formCadastro.get('acesso').value;
+        this.usuario.telefone = this.formCadastro.get('telefone').value;
         this.usuario.enable = true;
         this.adminService.cadastrarUsuario(this.usuario).subscribe(
             (data) => {
                 this.toastrService.success(data, 'Sucesso');
+                this.router.navigateByUrl('menu/tela-inicial');
             },
             (error) => {
                 console.log('Erro ao cadastrar usuario', error);

@@ -38,26 +38,34 @@ export class AnuncioService {
 
         const formData: FormData = new FormData();
         console.log('ANNTES DE ENVIAR ', imagem);
-        
+
         formData.append('imagens', imagem);
         formData.append('veiculoId', veiculoId);
 
         return this.httpClient.post(environment.url_api + "anuncio/salvarImagem", formData);
     }
 
-    buscarVeiculoEspecifico(id){
+    buscarVeiculoEspecifico(id) {
         let httpOptions = new HttpHeaders();
         httpOptions.append('Content-Type', 'application/json');
 
         return this.httpClient.get(environment.url_api + "anuncio/buscarDetalhesAnuncio/" + id, { headers: httpOptions });
     }
-    
-    buscarImagem(id){
-        
+
+    buscarImagem(id) {
+
         let httpOptions = new HttpHeaders();
         httpOptions.append('Content-Type', 'application/json');
 
         return this.httpClient.get(environment.url_api + "anuncio/buscarDetalhesAnuncio/buscarImagens/" + id, { headers: httpOptions });
     }
+
+    editarVeiculo(dado) {
+        let httpOptions = new HttpHeaders();
+        httpOptions.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(environment.url_api + "anuncio/editar-anuncio", dado, { headers: httpOptions });
+    }
+
 
 }

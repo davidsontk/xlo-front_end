@@ -21,8 +21,6 @@ export class ListaAnunciosComponent implements OnInit {
         this.buscarVeiculosPorUsuario();
     }
 
-
-
     buscarVeiculosPorUsuario() {
         this.anuncioService.buscarVeiculosPorUsuario(this.usuarioLogado.username).subscribe(
             (data: any) => {
@@ -40,7 +38,8 @@ export class ListaAnunciosComponent implements OnInit {
         this.router.navigateByUrl('/anuncio/cadastro-anuncio');
     }
 
-    editarAnuncio() {
+    editarAnuncio(veiculo) {
+        sessionStorage.setItem('veiculoEditar', JSON.stringify(veiculo));
         this.router.navigateByUrl('/anuncio/editar-anuncio');
     }
 }

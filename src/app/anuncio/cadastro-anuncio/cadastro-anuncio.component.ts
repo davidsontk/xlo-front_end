@@ -52,8 +52,8 @@ export class CadastroAnuncioComponent implements OnInit {
             opcionais: ['', Validators.required]
         });
         this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
-        this.buscarTiposVeiculos()
-        this.buscarOpcionais()
+        this.buscarTiposVeiculos();
+        this.buscarOpcionais();
         this.quantidadeImagens = 0;
     }
 
@@ -129,11 +129,11 @@ export class CadastroAnuncioComponent implements OnInit {
         this.veiculo.kmRodado = this.formVeiculo.get('km').value;
         this.veiculo.marca = this.formVeiculo.get('marca').value;
         this.veiculo.tipo = this.formVeiculo.get('tipo').value;
-        //this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
+
         let anuncio = {
             opcionais: this.opcionaisSelecao,
             veiculo: this.veiculo,
-            idUsuario: this.usuarioLogado.id
+            idUsuario: this.usuarioLogado.id,
         };
 
         this.anuncioService.cadastroVeiculo(anuncio).subscribe(
