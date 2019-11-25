@@ -1,10 +1,12 @@
+import { Marca } from './marca';
+
 export class Veiculo {
     id: number;
     descricao: string;
-    marca: string;
+    marca: Marca = new Marca();
     ano: number;
     preco: number;
-    km: number;
+    kmRodado: number;
     imagem: string;
     adicionais: [];
     tipo: string;

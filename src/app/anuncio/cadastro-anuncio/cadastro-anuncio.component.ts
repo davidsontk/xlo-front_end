@@ -126,7 +126,7 @@ export class CadastroAnuncioComponent implements OnInit {
         this.veiculo.descricao = this.formVeiculo.get('descricao').value;
         this.veiculo.preco = this.formVeiculo.get('preco').value;
         this.veiculo.ano = this.formVeiculo.get('ano').value;
-        this.veiculo.km = this.formVeiculo.get('km').value;
+        this.veiculo.kmRodado = this.formVeiculo.get('km').value;
         this.veiculo.marca = this.formVeiculo.get('marca').value;
         this.veiculo.tipo = this.formVeiculo.get('tipo').value;
         //this.veiculo.adicionais = this.formVeiculo.get('adicionais').value;
