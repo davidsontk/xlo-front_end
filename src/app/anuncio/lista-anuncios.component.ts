@@ -24,7 +24,7 @@ export class ListaAnunciosComponent implements OnInit {
 
 
     buscarVeiculosPorUsuario() {
-        this.anuncioService.buscarVeiculosPorUsuario(this.usuarioLogado.name).subscribe(
+        this.anuncioService.buscarVeiculosPorUsuario(this.usuarioLogado.username).subscribe(
             (data: any) => {
 
                 this.listaVeiculos = data;
