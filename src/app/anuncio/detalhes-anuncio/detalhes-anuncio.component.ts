@@ -20,7 +20,6 @@ export class DetalhesAnuncioComponent implements OnInit {
     veiculo = new Veiculo();
     quantidadeTotalElementos = 0;
     primeiraImagem = '';
-    
 
     constructor(private route:ActivatedRoute,private telaInicialService: TelaInicialService,private anuncioService: AnuncioService) {
         this.idVeiculo = sessionStorage.carSelected;
@@ -37,6 +36,10 @@ export class DetalhesAnuncioComponent implements OnInit {
                 console.log('Erro ao buscar Veiculo', error);
             }
         )
+    }
+
+    verTelefone(evt){
+        $('.text-card-telefone').removeClass('d-none')
     }
 
     buscarImagem(){

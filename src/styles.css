@@ -37,7 +37,7 @@ body{
 .icones-veiculo.fa-phone{
     position: absolute;
     bottom:0;
-    right:120px;
+    right:40px;
     bottom:20px;
 }
 .icones-veiculo.fa-star-o{
@@ -54,4 +54,7 @@ body{
 }
 .corpo-detalhes-veiculo{
     height: 80%;
+}
+.text-card-telefone{
+    font-size:2em;
 }
