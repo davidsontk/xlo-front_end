@@ -7,4 +7,5 @@ export class Usuario {
     username: string;
     lastname: string;
     name: string;
+    telefone: string;
 }
