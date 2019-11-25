@@ -11,7 +11,7 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item" *ngFor="let imagem of imagens">
-                                <img src="data:image/png;base64,{{imagem}}" class="d-block w-100" alt="...">
+                                <img src="data:image/png;base64,{{imagem}}" style="max-height: 500px;" class="d-block w-100" alt="...">
                             </div>
                         </div> 
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card-body corpo-detalhes-veiculo" style="min-height: 450px;">
+                    <div class="card-body corpo-detalhes-veiculo" style="min-height: 420px;">
                         <h5 class="card-title">{{veiculo.descricao}}</h5>
                         <p class="card-text">{{veiculo.marca.marca}}</p>
                         <p class="card-text">Ano {{veiculo.ano}}</p>
@@ -39,7 +39,7 @@
 
 
                     </div>
-                    <div class="card-footer" style="min-height: 60px;">
+                    <div class="card-footer" style="min-height: 80px;">
                         <i class="fa fa-star-o icones-veiculo"></i>
                         <i class="fa fa-phone icones-veiculo"></i>
                     </div>

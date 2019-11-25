@@ -16,6 +16,7 @@ export class DetalhesAnuncioComponent implements OnInit {
     opcionais: [];
     listaVeiculos : [];
     imagens: [];
+    quantidadeImagens = 0;
     veiculo = new Veiculo();
     quantidadeTotalElementos = 0;
     primeiraImagem = '';
@@ -39,9 +40,12 @@ export class DetalhesAnuncioComponent implements OnInit {
         this.anuncioService.buscarImagem(this.idVeiculo).subscribe(
             (data: any) => {
                 this.imagens = data;
+                this.quantidadeImagens = data.length;
+                console.log(this.idVeiculo);
+                console.log(data);
             },
             (error: any) => {
-                console.log('Erro ao buscar Veiculo', error);
+                console.log('Erro ao buscar Imagem', error);
             }
         )
     }
