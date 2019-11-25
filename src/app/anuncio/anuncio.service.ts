@@ -46,12 +46,14 @@ export class AnuncioService {
 
         return this.httpClient.post(environment.url_api + "anuncio/salvarImagem", formData);
     }
+
     buscarVeiculoEspecifico(id){
         let httpOptions = new HttpHeaders();
         httpOptions.append('Content-Type', 'application/json');
 
         return this.httpClient.get(environment.url_api + "anuncio/buscarDetalhesAnuncio/" + id, { headers: httpOptions });
     }
+    
     buscarImagem(id){
         
         let httpOptions = new HttpHeaders();

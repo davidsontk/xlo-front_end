@@ -23,11 +23,13 @@ export class DetalhesAnuncioComponent implements OnInit {
 
     constructor(private route:ActivatedRoute,private telaInicialService: TelaInicialService,private anuncioService: AnuncioService) {
         this.idVeiculo = sessionStorage.carSelected;
-     }
+    }
+
     buscarVeiculoEspecifico(){
         this.anuncioService.buscarVeiculoEspecifico(this.idVeiculo).subscribe(
             (data: any) => {
                 this.veiculo = data.veiculo;
+                console.log(this.veiculo);
                 this.opcionais = data.opcionais;
             },
             (error: any) => {
@@ -35,6 +37,7 @@ export class DetalhesAnuncioComponent implements OnInit {
             }
         )
     }
+
     buscarImagem(){
         this.anuncioService.buscarImagem(this.idVeiculo).subscribe(
             (data: any) => {
