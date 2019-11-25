@@ -62,7 +62,7 @@ export class CadastroUsuarioComponent implements OnInit {
                 this.toastrService.success(data, 'Sucesso');
             },
             (error) => {
-                console.log('Erro ao tentar logar usuario', error);
+                console.log('Erro ao cadastrar usuario', error);
             }
         );
     }

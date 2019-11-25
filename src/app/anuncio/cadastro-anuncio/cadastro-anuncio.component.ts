@@ -26,6 +26,7 @@ export class CadastroAnuncioComponent implements OnInit {
     campoDinamico = '';
     opcionais = '';
     comFiltro: boolean = false;
+    quantidadeImagens: number = 0;
 
     listaMarcaVeiculos = [];
     listaTipoVeiculos = [];
@@ -53,6 +54,7 @@ export class CadastroAnuncioComponent implements OnInit {
         this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
         this.buscarTiposVeiculos()
         this.buscarOpcionais()
+        this.quantidadeImagens = 0;
     }
 
     buscarMarcaVeiculos(tipoVeiculo) {
@@ -133,17 +135,15 @@ export class CadastroAnuncioComponent implements OnInit {
             veiculo: this.veiculo,
             idUsuario: this.usuarioLogado.id
         };
-        console.log(anuncio);
+
         this.anuncioService.cadastroVeiculo(anuncio).subscribe(
             (data: any) => {
-                console.log('Anuncio = ', data);
-                this.toastrService.success(data, 'Sucesso');
-                for(let i = 0; i < this.listaImagens.length; i++){
+                for (let i = 0; i < this.listaImagens.length; i++) {
                     this.salvarImagem(this.listaImagens[i], data.id);
                 }
             },
             (error) => {
-                console.log('Erro ao tentar o bem bolado', error);
+                console.log('Erro ao tentar salvar anuncio(veiculo e opcionais)', error);
             }
         );
     }
@@ -160,10 +160,14 @@ export class CadastroAnuncioComponent implements OnInit {
     salvarImagem(imagem, veiculoId: any) {
         this.anuncioService.salvarImagem(imagem, veiculoId).subscribe(
             (data: any) => {
-                console.log('sera?');
+                this.quantidadeImagens++;
+                if (this.quantidadeImagens > (this.listaImagens.length - 1)) {
+                    this.toastrService.success('Sucesso', 'Anúncio cadastrado com sucesso!');
+                    this.router.navigateByUrl('menu/tela-inicial');
+                }
             },
             (error: any) => {
-
+                console.log('Erro ao tentar salvar imagem do veiculo', error);
             }
         );
     }

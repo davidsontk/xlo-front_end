@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListaAnunciosComponent implements OnInit {
     listaVeiculos = [];
     usuarioLogado: Usuario;
-
+    
     constructor(private router: Router, private anuncioService: AnuncioService) {
         this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
 

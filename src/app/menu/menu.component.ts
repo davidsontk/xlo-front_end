@@ -3,6 +3,7 @@ import { LoginService } from './../login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalLoginComponent } from '../login/modal-login/modal-login.component'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'menu-app',
@@ -14,7 +15,7 @@ export class MenuComponent implements OnInit {
     usuarioLogado: Usuario;
     logado: boolean = false;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private toastrService: ToastrService) { }
 
     ngOnInit() { 
         this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
@@ -31,13 +32,16 @@ export class MenuComponent implements OnInit {
         this.router.navigateByUrl('/admin/cadastrar-usuario');
     }
     
-    rotaAnuncio(){
+    rotaListaAnuncio(){
         this.router.navigateByUrl('/anuncio');
+    }
+
+    cadastroAnuncio() {
+        this.router.navigateByUrl('/anuncio/cadastro-anuncio');
     }
 
     fecharModalPai(evento){
         document.getElementById("clickModal").click();
-            console.log( 'so confirmando', <Usuario>JSON.parse(sessionStorage.getItem('user')));
             this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
             this.logado = true;
         
@@ -46,5 +50,7 @@ export class MenuComponent implements OnInit {
     deslogar(){
         sessionStorage.clear();
         this.logado = false;
+        this.toastrService.error('Usuário deslogado!','Info');
+        this.router.navigateByUrl('menu/tela-inicial');
     }
 }
