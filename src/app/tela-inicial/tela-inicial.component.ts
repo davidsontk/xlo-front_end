@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class TelaInicialComponent implements OnInit {
+    veiculoSelecionado = 0;
     tipoVeiculo = '';
     marcaVeiculo = '';
     campoDinamico = '';
@@ -131,6 +132,11 @@ export class TelaInicialComponent implements OnInit {
                 this.buscarTodosVeiculos(this.paginaAtual, this.quantidadePorPagina);
             }
         }
+    }
+
+    verDetalhes(id){
+        sessionStorage.carSelected = id;
+        this.router.navigateByUrl(`/anuncio/detalhes-anuncio`);
     }
 
     buscarTodosVeiculos(pagina, tamanhoPagina) {

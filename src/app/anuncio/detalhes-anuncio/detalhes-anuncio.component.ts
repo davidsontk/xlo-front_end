@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Veiculo } from 'src/app/shared/models/veiculo';
 import { TelaInicialService } from '../../tela-inicial/tela-inicial.service';
+import { AnuncioService } from '../anuncio.service';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'detalhes-anuncio-app',
@@ -10,36 +12,44 @@ import { TelaInicialService } from '../../tela-inicial/tela-inicial.service';
 })
 
 export class DetalhesAnuncioComponent implements OnInit {
-    idVeiculo: number;
+    idVeiculo:0;
+    opcionais: [];
     listaVeiculos : [];
+    imagens: [];
     veiculo = new Veiculo();
     quantidadeTotalElementos = 0;
+    primeiraImagem = '';
+    
 
-    constructor(private route:ActivatedRoute,private telaInicialService: TelaInicialService) {
-        this.idVeiculo = this.route.snapshot.params['id'];
+    constructor(private route:ActivatedRoute,private telaInicialService: TelaInicialService,private anuncioService: AnuncioService) {
+        this.idVeiculo = sessionStorage.carSelected;
      }
-
-    buscarTodosVeiculos(pagina, tamanhoPagina) {
-        this.telaInicialService.buscarTodosVeiculos(pagina, tamanhoPagina).subscribe(
+    buscarVeiculoEspecifico(){
+        this.anuncioService.buscarVeiculoEspecifico(this.idVeiculo).subscribe(
             (data: any) => {
-                this.quantidadeTotalElementos = data.totalElements;
-                
-                data.content.forEach(element => {
-                    if(element.id == this.idVeiculo){
-                        this.veiculo = element;
-                        return;
-                    }
-                });
-                console.log(this.veiculo)
+                this.veiculo = data.veiculo;
+                this.opcionais = data.opcionais;
             },
             (error: any) => {
-                console.log('Erro ao buscarTodosVeiculos', error)
+                console.log('Erro ao buscar Veiculo', error);
             }
-        );
+        )
     }
-    ngOnInit() { 
-        
-        this.buscarTodosVeiculos(0,10000);
-        console.log(this.listaVeiculos)
+    buscarImagem(){
+        this.anuncioService.buscarImagem(this.idVeiculo).subscribe(
+            (data: any) => {
+                this.imagens = data;
+            },
+            (error: any) => {
+                console.log('Erro ao buscar Veiculo', error);
+            }
+        )
+    }
+    ngOnInit() {
+        this.buscarVeiculoEspecifico();
+        this.buscarImagem();
+        setTimeout(function(){
+            $('.carousel-item:first(1)').addClass('active');
+        },500)
     }
 }

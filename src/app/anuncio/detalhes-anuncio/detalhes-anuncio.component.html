@@ -10,10 +10,10 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            <img src="../assets/cars/{{veiculo.id}}.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-item" *ngFor="let imagem of imagens">
+                                <img src="data:image/png;base64,{{imagem}}" class="d-block w-100" alt="...">
                             </div>
-                        </div>
+                        </div> 
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
@@ -25,18 +25,27 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card-body corpo-detalhes-veiculo">
+                    <div class="card-body corpo-detalhes-veiculo" style="min-height: 450px;">
                         <h5 class="card-title">{{veiculo.descricao}}</h5>
                         <p class="card-text">{{veiculo.marca.marca}}</p>
                         <p class="card-text">Ano {{veiculo.ano}}</p>
                         <p class="card-text">Quilometragem {{veiculo.kmRodado}}</p>
-                        <p class="card-text">Preço {{veiculo.preco}}</p>
+                        <p class="card-text">Preço R$ {{veiculo.preco}}</p>
+                        <div class="card-opcionais">
+                            <ul class="flex flex-wrap">
+                                <li *ngFor = "let opcional of opcionais">{{opcional.nome}}</li>
+                            </ul>
+                        </div>
+
+
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer" style="min-height: 60px;">
                         <i class="fa fa-star-o icones-veiculo"></i>
                         <i class="fa fa-phone icones-veiculo"></i>
                     </div>
                 </div>
+
+                <img src="" class="imagem">
                 </div>
         </div>
     </div>

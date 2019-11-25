@@ -34,8 +34,7 @@
     </div>
     <div class="col-md-8 col-lg-8 col-sm-12 mb-3 mt-5" >
         <div class="conteudoCentral border-box d-flex justify-content-start flex-wrap">
-            <!-- <div class="card ml-3 mb-3 d-flex wrap card-car" *ngFor="let carro of listaVeiculos"
-                style="width: 18rem;">
+            <!-- <div class="card ml-3 mb-3 d-flex wrap card-car" *ngFor="let carro of listaVeiculos" style="width: 18rem;">
                 <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{carro.descricao}}</h5>
@@ -46,12 +45,12 @@
 
             <div class="card ml-3 mb-3 d-flex justify-content-around wrap card-car" style="width: 18rem;" *ngFor="let carro of listaVeiculos | 
             paginate: { itemsPerPage: quantidadePorPagina, 
-            currentPage: paginaAtual, totalItems: quantidadeTotalElementos}">
-                <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;" alt="...">
-                <div class="card-body" [routerLink]="['../../anuncio/detalhes-anuncio',carro.id]">
+            currentPage: paginaAtual, totalItems: quantidadeTotalElementos}" (click)="verDetalhes(carro.id)">
+                <img src="../assets/cars/{{carro.id}}.jpg" class="card-img-top" style="min-height: 180px;"  alt="...">
+                <div class="card-body" >
                     <h5 class="card-title">{{carro.descricao}}</h5>
 
-                    <span class=""><i class="mr-2 fa fa-money-bill-wave color-green"></i>{{carro.preco}} R$</span>
+                    <span class=""><i class="mr-2 fa fa-money-bill-wave color-green"></i>R$ {{carro.preco}}</span>
                 </div>
             </div>
                <!-- <button (click)="rotaDetalhesDoAnuncio()" class="btn btn-sm btn-danger"> CLICK DETALHES DO ANUNCIO</button>       -->

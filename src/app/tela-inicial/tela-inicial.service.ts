@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 
 @Injectable()
-export class TelaInicialService {
 
+export class TelaInicialService {
+    veicuLoselecionado = 0;
     constructor(private httpClient: HttpClient) { }
 
 
