@@ -1,3 +1,4 @@
+import { Usuario } from 'src/app/shared/models/usuario';
 import { Marca } from './marca';
 
 export class Veiculo {
@@ -10,4 +11,5 @@ export class Veiculo {
     imagem: string;
     adicionais: [];
     tipo: string;
+    idUsuario: Usuario = new Usuario();
 }

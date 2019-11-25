@@ -62,6 +62,7 @@ export class CadastroUsuarioComponent implements OnInit {
         this.adminService.cadastrarUsuario(this.usuario).subscribe(
             (data) => {
                 this.toastrService.success(data, 'Sucesso');
+                this.router.navigateByUrl('menu/tela-inicial');
             },
             (error) => {
                 console.log('Erro ao cadastrar usuario', error);
