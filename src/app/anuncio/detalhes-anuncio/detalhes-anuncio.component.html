@@ -5,13 +5,11 @@
                 <div class="col-md-6">
                     <div id="carouselExampleIndicators" style="max-width: 700px;" class="carousel slide rounded" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicators" *ngFor = "let imagem of imagens; let i = index;" data-slide-to="index" class="active"></li>
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item" *ngFor="let imagem of imagens">
-                                <img src="data:image/png;base64,{{imagem}}" class="d-block w-100" alt="...">
+                                <img src="data:image/png;base64,{{imagem}}" style="max-height: 500px;" class="d-block w-100" alt="...">
                             </div>
                         </div> 
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -25,11 +23,11 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card-body corpo-detalhes-veiculo" style="min-height: 450px;">
-                        <h5 class="card-title">Título: {{veiculo.descricao}}</h5>
-                        <p class="card-text">Marca: {{veiculo.marca.marca}}</p>
-                        <p class="card-text">Ano: {{veiculo.ano}}</p>
-                        <p class="card-text">Quilometragem: {{veiculo.kmRodado}} KM</p>
+                    <div class="card-body corpo-detalhes-veiculo" style="min-height: 420px;">
+                        <h5 class="card-title">{{veiculo.descricao}}</h5>
+                        <p class="card-text">{{veiculo.marca.marca}}</p>
+                        <p class="card-text">Ano {{veiculo.ano}}</p>
+                        <p class="card-text">Quilometragem {{veiculo.kmRodado}}</p>
                         <p class="card-text">Preço R$ {{veiculo.preco}}</p>
                         <div class="card-opcionais">
                             <ul class="flex flex-wrap">
@@ -39,9 +37,9 @@
 
 
                     </div>
-                    <div class="card-footer" style="min-height: 60px;">
-                        <i class="fa fa-star-o icones-veiculo"></i>
-                        <i class="fa fa-phone icones-veiculo"></i>
+                    <div class="card-footer" style="min-height: 80px;">
+                        <span class="text-card-telefone d-none">Gilberto 67 9 9292-4201</span>
+                        <i class="fa fa-phone icones-veiculo" (click)="verTelefone($event)"></i>
                     </div>
                 </div>
 

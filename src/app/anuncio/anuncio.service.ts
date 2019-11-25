@@ -23,8 +23,6 @@ export class AnuncioService {
 
         return this.httpClient.get(environment.url_api + "anuncio/opcionais", { headers: httpOptions });
         //return this.httpClient.get(environment.url_api + 'campos/buscarTodosVeiculos/' + pagina + '/'+ tamanhoPagina, {headers: httpOptions});
-
-
     }
 
     cadastroVeiculo(dado) {

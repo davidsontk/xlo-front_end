@@ -141,7 +141,7 @@ export class TelaInicialComponent implements OnInit {
 
     buscarTodosVeiculos(pagina, tamanhoPagina) {
         this.telaInicialService.buscarTodosVeiculos(pagina, tamanhoPagina).subscribe(
-            (data: any) => {
+            (data: any) => {                
                 console.log('TODOS VEICULOSS RECEBIDOS', data);
                 this.quantidadeTotalElementos = data.totalElements;
                 
@@ -150,6 +150,8 @@ export class TelaInicialComponent implements OnInit {
                     a.descricao = a.descricao.slice(0,20) + adicional;
                     return a;
                 });
+
+
             },
             (error: any) => {
                 console.log('Erro ao buscarTodosVeiculos', error)

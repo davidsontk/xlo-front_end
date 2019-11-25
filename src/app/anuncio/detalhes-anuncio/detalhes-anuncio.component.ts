@@ -16,10 +16,10 @@ export class DetalhesAnuncioComponent implements OnInit {
     opcionais: [];
     listaVeiculos : [];
     imagens: [];
+    quantidadeImagens = 0;
     veiculo = new Veiculo();
     quantidadeTotalElementos = 0;
     primeiraImagem = '';
-    
 
     constructor(private route:ActivatedRoute,private telaInicialService: TelaInicialService,private anuncioService: AnuncioService) {
         this.idVeiculo = sessionStorage.carSelected;
@@ -38,13 +38,20 @@ export class DetalhesAnuncioComponent implements OnInit {
         )
     }
 
+    verTelefone(evt){
+        $('.text-card-telefone').removeClass('d-none')
+    }
+
     buscarImagem(){
         this.anuncioService.buscarImagem(this.idVeiculo).subscribe(
             (data: any) => {
                 this.imagens = data;
+                this.quantidadeImagens = data.length;
+                console.log(this.idVeiculo);
+                console.log(data);
             },
             (error: any) => {
-                console.log('Erro ao buscar Veiculo', error);
+                console.log('Erro ao buscar Imagem', error);
             }
         )
     }
