@@ -58,3 +58,8 @@ body{
 .text-card-telefone{
     font-size:2em;
 }
+
+.card-opcionais{
+    max-height: 185px;
+    overflow: auto;
+}
