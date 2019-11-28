@@ -17,6 +17,7 @@
                                 <th scope="col" class="text-center">Preço</th>
                                 <th scope="col" class="text-center">Ano</th>
                                 <th scope="col" class="text-center">Editar Veículo</th>
+                                <th scope="col" class="text-center">Excluir Veículo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,6 +29,10 @@
                                 <td scope="row" class="text-center">
                                     <button class="btn btn-outline-primary" (click)="editarAnuncio(veiculo)">Editar
                                         Anúncio</button>
+                                </td>
+                                <td scope="row" class="text-center">
+                                    <button class="btn btn-outline-danger" (click)="excluirVeiculo(veiculo)">Excluir
+                                        Veículo</button>
                                 </td>
                             </tr>
                         </tbody>

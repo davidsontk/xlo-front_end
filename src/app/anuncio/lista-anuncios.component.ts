@@ -1,7 +1,9 @@
+import { Veiculo } from 'src/app/shared/models/veiculo';
 import { Usuario } from 'src/app/shared/models/usuario';
 import { AnuncioService } from './anuncio.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'lista-anuncios-app',
@@ -11,8 +13,10 @@ import { Component, OnInit } from '@angular/core';
 export class ListaAnunciosComponent implements OnInit {
     listaVeiculos = [];
     usuarioLogado: Usuario;
-    
-    constructor(private router: Router, private anuncioService: AnuncioService) {
+
+    constructor(private router: Router,
+        private anuncioService: AnuncioService,
+        private toastrService: ToastrService) {
         this.usuarioLogado = <Usuario>JSON.parse(sessionStorage.getItem('user'));
 
     }
@@ -41,5 +45,18 @@ export class ListaAnunciosComponent implements OnInit {
     editarAnuncio(veiculo) {
         sessionStorage.setItem('veiculoEditar', JSON.stringify(veiculo));
         this.router.navigateByUrl('/anuncio/editar-anuncio');
+    }
+
+    excluirVeiculo(veiculo: Veiculo) {
+        this.anuncioService.excluirVeiculo(veiculo.id).subscribe(
+            (data: any) => {
+                this.listaVeiculos = [];
+                this.buscarVeiculosPorUsuario();
+                this.toastrService.success("Anúncio deletado com sucesso", "Sucesso");
+            },
+            (error) => {
+                console.log('Erro ao deletar anuncio', error);
+            }
+        );
     }
 }

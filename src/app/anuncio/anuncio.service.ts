@@ -67,5 +67,11 @@ export class AnuncioService {
         return this.httpClient.post(environment.url_api + "anuncio/editar-anuncio", dado, { headers: httpOptions });
     }
 
+    excluirVeiculo(idVeiculo){
+        let httpOptions = new HttpHeaders();
+        httpOptions.append('Content-Type', 'application/json');
+        
+        return this.httpClient.delete(environment.url_api + "anuncio/" + idVeiculo, {headers: httpOptions, responseType: 'text'});
+    }
 
 }
